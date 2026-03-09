@@ -11,15 +11,19 @@ html, body {
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #ffffff;
-    background: #000000 url("IMG_1109.png") no-repeat center center fixed;
-    background-size: cover;
+    background-color: #000000;
+    background-image: url("IMG_1109.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+    background-size: contain;
 }
 
-/* dark overlay over the background logo */
+/* dark transparent layer over the logo */
 .overlay {
     min-height: 100vh;
     width: 100%;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.55); /* 0.55 = logo faint, text solid */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -31,6 +35,7 @@ body {
     width: 100%;
     padding: 30px;
     text-align: center;
+    margin: 0 auto;
 }
 
 /* typography and colors */
