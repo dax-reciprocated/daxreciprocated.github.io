@@ -18,16 +18,15 @@ body {
     background-position: center center;
     background-size: contain;
 }
-}
 
-/* dark overlay over the background logo */
+/* dark transparent layer over the logo */
 .overlay {
     min-height: 100vh;
     width: 100%;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.55); /* 0.55 = logo faint, text solid */
     display: flex;
-    justify-content: center;   /* centers left-to-right */
-    align-items: center;       /* centers top-to-bottom */
+    justify-content: center;
+    align-items: center;
 }
 }
 
@@ -37,8 +36,8 @@ body {
     width: 100%;
     padding: 30px;
     text-align: center;
+    margin: 0 auto;
 }
-
 /* typography and colors */
 header h1 {
     font-size: 2.5rem;
