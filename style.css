@@ -12,7 +12,8 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #ffffff;
     background: #000000 url("IMG_1109.png") no-repeat center center fixed;
-    background-size: cover;
+    background-size: 70%;
+}
 }
 
 /* dark overlay over the background logo */
