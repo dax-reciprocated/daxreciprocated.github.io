@@ -1,133 +1,30 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html, body {
-    height: 100%;
-}
-
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #ffffff;
-    background-color: #000000;
-    background-image: url("IMG_1109.png");
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center center;
-    background-size: contain;
-}
-
-/* dark transparent layer over the logo */
-.overlay {
-    min-height: 100vh;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.55); /* 0.55 = logo faint, text solid */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-}
-
-/* centered content box */
-.content {
-    max-width: 900px;
-    width: 100%;
-    padding: 30px;
-    text-align: center;
-    margin: 0 auto;
-}
-/* typography and colors */
-header h1 {
-    font-size: 2.5rem;
-    letter-spacing: 2px;
-    color: #ffffff;
-    margin-bottom: 10px;
-}
-
-.tagline {
-    font-size: 1.2rem;
-    color: #ffffff;
-    margin-bottom: 30px;
-}
-
-/* sections */
-.section {
-    margin-bottom: 30px;
-}
-
-/* blood red headings, white body text */
-.section h2 {
-    font-size: 1.8rem;
-    margin-bottom: 10px;
-    color: #b30000; /* blood red */
-}
-
-.section p {
-    font-size: 1rem;
-    line-height: 1.6;
-    color: #ffffff;
-}
-
-.section ul {
+/* link list styling */
+.link-list {
     list-style: none;
     margin-top: 10px;
-    margin-bottom: 10px;
 }
 
-.section ul li {
+.link-list li {
     margin-bottom: 6px;
+}
+
+.link-list a {
     color: #ffffff;
+    text-decoration: underline;
 }
 
-/* CTA button */
-.cta-button {
-    display: inline-block;
-    background: #b30000; /* blood red */
-    color: #ffffff;
-    padding: 12px 30px;
-    text-decoration: none;
-    border-radius: 4px;
-    font-weight: bold;
+.link-list a:hover {
+    color: #b30000; /* blood red on hover */
+}
+
+/* testimonial quote styling */
+.quote {
+    font-style: italic;
     margin-top: 10px;
-    transition: transform 0.2s, background 0.2s;
 }
 
-.cta-button:hover {
-    transform: translateY(-2px);
-    background: #d00000;
-}
-
-.contact-email {
-    margin-top: 10px;
+.quote-name {
+    margin-top: 5px;
     font-size: 0.95rem;
-}
-
-.disclaimer {
-    font-size: 0.85rem;
-    margin-top: 10px;
-    color: #f0f0f0;
-}
-
-/* footer */
-footer {
-    margin-top: 20px;
-    font-size: 0.85rem;
-    color: #dddddd;
-}
-
-/* mobile adjustments */
-@media (max-width: 768px) {
-    header h1 {
-        font-size: 2rem;
-    }
-
-    .section h2 {
-        font-size: 1.5rem;
-    }
-
-    .content {
-        padding: 20px;
-    }
+    opacity: 0.9;
 }
