@@ -11,8 +11,12 @@ html, body {
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #ffffff;
-    background: #000000 url("IMG_1109.png") no-repeat center center fixed;
-    background-size: 5%;
+    background-color: #000000;
+    background-image: url("IMG_1109.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+    background-size: contain;
 }
 }
 
