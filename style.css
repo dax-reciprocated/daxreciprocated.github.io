@@ -7,8 +7,22 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
-    color: #f4f4f4;
-    background: #000000;
+    color: #ffffff;
+    background-color: #000000;
+    background-image: url("IMG_1109.png");
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-attachment: fixed;
+    background-size: contain;
+}
+
+/* translucent dark layer so logo is faint, text solid */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    z-index: -1;
 }
 
 .container {
@@ -50,8 +64,8 @@ nav a:hover {
 }
 
 .hero {
-    background: #000000;
-    color: white;
+    background: transparent;
+    color: #ffffff;
     padding: 150px 0 100px;
     text-align: center;
 }
@@ -95,19 +109,19 @@ section {
 }
 
 .about, .services, .testimonials, .resources {
-    background: #111111;
+    background: transparent;
 }
 
 .about p, .services p, .testimonials p, .resources p, .resources li {
-    color: #e0e0e0;
+    color: #ffffff;
 }
 
 .services {
-    background: #0b0b0b;
+    background: transparent;
 }
 
 .service-box {
-    background: #151515;
+    background: transparent;
     padding: 40px;
     border-radius: 10px;
     margin-top: 30px;
@@ -124,11 +138,11 @@ section {
 }
 
 .testimonials {
-    background: #111111;
+    background: transparent;
 }
 
 .testimonial-box {
-    background: #151515;
+    background: transparent;
     padding: 25px;
     border-radius: 10px;
     margin-top: 20px;
@@ -138,7 +152,7 @@ section {
 .testimonial-name {
     margin-top: 10px;
     font-style: italic;
-    color: #b0b0b0;
+    color: #ffffff;
 }
 
 .resources ul {
@@ -146,7 +160,7 @@ section {
 }
 
 .resources a {
-    color: #4CAF50;
+    color: #ffffff;
     text-decoration: none;
 }
 
@@ -155,8 +169,8 @@ section {
 }
 
 .contact {
-    background: #000000;
-    color: white;
+    background: transparent;
+    color: #ffffff;
     text-align: center;
 }
 
