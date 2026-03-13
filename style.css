@@ -111,6 +111,11 @@ nav a:hover {
 /* SECTIONS */
 section {
     padding: 80px 0;
+    #about{
+color:#f5f5f5;
+line-height:1.6;
+font-size:17px;
+}
 }
 
 .about,
