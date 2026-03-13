@@ -5,178 +5,188 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>DAX Reciprocated | VA Disability Claim Strategy</title>
+<title>DAX Reciprocated | VA Disability Education & Strategy</title>
 
 <style>
 
-body{
-font-family:Arial, Helvetica, sans-serif;
-margin:0;
-color:#333;
-
-background:
-linear-gradient(rgba(0,0,0,.92), rgba(0,0,0,.92)),
-url('IMG_1109.png');
-
-background-size:cover;
-background-position:center;
-background-repeat:no-repeat;
-background-attachment:fixed;
+/* --- BODY & BACKGROUND --- */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    color: #fff;
+    background:
+        linear-gradient(rgba(0, 0, 0, .92), rgba(0, 0, 0, .92)),
+        url('IMG_1109.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
-.container{
-width:90%;
-max-width:1100px;
-margin:auto;
+/* --- CONTAINER --- */
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: auto;
 }
 
-header{
-background:#0b1c2c;
-color:white;
-padding:15px 0;
-position:sticky;
-top:0;
-z-index:999;
+/* --- HEADER & NAVIGATION --- */
+header {
+    background: #0b1c2c;
+    color: white;
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 999;
 }
 
-nav{
-display:flex;
-justify-content:center;
-gap:30px;
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
 }
 
-nav a{
-color:white;
-text-decoration:none;
-font-weight:bold;
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
 }
 
-.hero{
-color:white;
-text-align:center;
-padding:120px 20px;
+/* --- HERO SECTION --- */
+.hero {
+    text-align: center;
+    padding: 120px 20px;
 }
 
-.hero h1{
-font-size:40px;
-margin-bottom:10px;
+.hero h1 {
+    font-size: 40px;
+    margin-bottom: 10px;
 }
 
-.tagline{
-font-size:22px;
-margin-bottom:10px;
+.tagline {
+    font-size: 22px;
+    margin-bottom: 10px;
 }
 
-.subtext{
-max-width:650px;
-margin:auto;
-margin-bottom:30px;
-color:#ddd;
+.subtext {
+    max-width: 650px;
+    margin: auto;
+    margin-bottom: 30px;
+    color: #ddd;
 }
 
-.cta-button{
-background:#e63946;
-color:white;
-padding:14px 28px;
-text-decoration:none;
-border-radius:6px;
-font-weight:bold;
-display:inline-block;
+.cta-button {
+    background: #e63946;
+    color: white;
+    padding: 14px 28px;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    display: inline-block;
 }
 
-.cta-button:hover{
-background:#d62839;
+.cta-button:hover {
+    background: #d62839;
 }
 
-section{
-padding:70px 0;
+/* --- SECTIONS --- */
+section {
+    padding: 70px 0;
 }
 
-h2{
-text-align:center;
-margin-bottom:30px;
-color:white;
+h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: white;
 }
 
-#about{
-color:#f5f5f5;
-line-height:1.6;
-font-size:17px;
+/* --- ABOUT SECTION --- */
+#about {
+    color: #f5f5f5;
+    line-height: 1.6;
+    font-size: 17px;
 }
 
-.pricing{
-display:flex;
-flex-wrap:wrap;
-gap:25px;
-justify-content:center;
+/* --- SERVICES / PRICING --- */
+.pricing {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
 }
 
-.price-box{
-background:white;
-padding:30px;
-border-radius:10px;
-box-shadow:0 4px 14px rgba(0,0,0,.4);
-flex:1 1 280px;
-max-width:320px;
+.price-box {
+    background: white;
+    color: #333;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, .4);
+    flex: 1 1 280px;
+    max-width: 320px;
 }
 
-.price-box h3{
-margin-top:0;
+.price-box h3 {
+    margin-top: 0;
 }
 
-.price{
-font-size:28px;
-color:#0b1c2c;
-font-weight:bold;
-margin-bottom:15px;
+.price {
+    font-size: 28px;
+    color: #0b1c2c;
+    font-weight: bold;
+    margin-bottom: 15px;
 }
 
-.price-box ul{
-padding-left:18px;
+.price-box ul {
+    padding-left: 18px;
 }
 
-.highlight{
-border:3px solid #e63946;
+.highlight {
+    border: 3px solid #e63946;
 }
 
-.testimonial{
-background:white;
-padding:25px;
-border-radius:10px;
-box-shadow:0 4px 10px rgba(0,0,0,.4);
-max-width:700px;
-margin:auto;
+/* --- TESTIMONIALS --- */
+.testimonial {
+    background: white;
+    color: #333;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, .4);
+    max-width: 700px;
+    margin: auto;
 }
 
-.resources ul{
-max-width:600px;
-margin:auto;
+/* --- RESOURCES --- */
+.resources ul {
+    max-width: 600px;
+    margin: auto;
 }
 
-.resources li{
-margin-bottom:10px;
+.resources li {
+    margin-bottom: 10px;
 }
 
-.contact{
-text-align:center;
-background:#0b1c2c;
-color:white;
+/* --- CONTACT --- */
+.contact {
+    text-align: center;
+    background: #0b1c2c;
+    color: white;
 }
 
-footer{
-background:#111;
-color:white;
-text-align:center;
-padding:20px;
-font-size:14px;
+/* --- FOOTER --- */
+footer {
+    background: #111;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
 }
 
-.disclaimer{
-font-size:13px;
-opacity:.8;
-margin-top:25px;
-color:#ddd;
+/* --- DISCLAIMER --- */
+.disclaimer {
+    font-size: 13px;
+    opacity: .8;
+    margin-top: 25px;
+    color: #ddd;
 }
 
 </style>
@@ -185,250 +195,166 @@ color:#ddd;
 
 <body>
 
+<!-- HEADER -->
 <header>
-
 <div class="container">
-
-<nav>
-
-<a href="#about">About</a>
-<a href="#pricing">Services</a>
-<a href="#testimonials">Testimonials</a>
-<a href="#resources">Resources</a>
-<a href="#contact">Consultation</a>
-
-</nav>
-
+    <nav>
+        <a href="#about">About</a>
+        <a href="#pricing">Services</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#resources">Resources</a>
+        <a href="#contact">Consultation</a>
+    </nav>
 </div>
-
 </header>
 
+<!-- HERO -->
 <section class="hero">
-
 <div class="container">
-
-<h1>Built on Trust. Proven by Results.</h1>
-
-<p class="tagline">VA Disability Claim Strategy & Education</p>
-
-<p class="subtext">
-Former Veterans Service Officer helping veterans understand their VA disability
-decisions and develop a smarter strategy before filing their next move.
-</p>
-
-<a href="https://buy.stripe.com/dRm00iamk8qkeWb2R74Vy00"
-class="cta-button" target="_blank">
-
-Start With The $300 Claim Strategy Session
-
-</a>
-
+    <h1>Built on Trust. Focused on Veteran Education.</h1>
+    <p class="tagline">VA Disability Education & Claim Strategy Coaching</p>
+    <p class="subtext">
+        Former Veterans Service Officer providing educational consultations to help
+        veterans better understand their VA disability decisions, rating criteria,
+        and potential next steps before speaking with an accredited representative.
+    </p>
+    <a href="https://buy.stripe.com/dRm00iamk8qkeWb2R74Vy00" class="cta-button" target="_blank">
+        Start With The $300 Strategy Session
+    </a>
 </div>
-
 </section>
 
+<!-- ABOUT -->
 <section id="about">
-
 <div class="container">
-
-<h2>About DAX Reciprocated</h2>
-
-<p>
-After serving as a Veterans Service Officer, I saw many veterans leave benefits on the table
-because of missing nexus letters, weak evidence, or misunderstanding how VA ratings work.
-</p>
-
-<p>
-DAX Reciprocated was created to help veterans better understand their decisions,
-their options, and the strategy behind building a stronger claim.
-</p>
-
-<p><strong>100+ Veterans Assisted</strong></p>
-
-<p class="disclaimer">
-
-DAX Reciprocated LLC provides educational information to help veterans better understand
-their VA disability decisions and options. I am a former Veterans Service Officer, not an
-attorney, and I am not affiliated with the Department of Veterans Affairs.
-
-</p>
-
+    <h2>About DAX Reciprocated</h2>
+    <p>
+        After serving as a Veterans Service Officer, I saw many veterans struggle
+        to understand their VA decision letters and the rating criteria used by
+        the Department of Veterans Affairs.
+    </p>
+    <p>
+        DAX Reciprocated provides educational consultations that help veterans better
+        understand how the VA evaluates evidence, how disability ratings are calculated,
+        and what questions they may want to ask when working with an accredited representative.
+    </p>
+    <p>
+        Veterans sometimes choose to voluntarily share their VA decision letters or
+        other documents during a consultation so we can review them together for
+        educational purposes. You remain in control of what information you share.
+    </p>
+    <p class="disclaimer">
+        DAX Reciprocated LLC provides educational information only. I am a former
+        Veterans Service Officer but I am not acting as an accredited representative,
+        attorney, or claims agent. I do not prepare, submit, or represent veterans in
+        VA claims or appeals. I am not affiliated with the U.S. Department of Veterans Affairs
+        or any veterans service organization.
+    </p>
 </div>
-
 </section>
 
+<!-- SERVICES / PRICING -->
 <section id="pricing">
-
 <div class="container">
+    <h2>VA Claim Strategy Services</h2>
+    <div class="pricing">
 
-<h2>VA Claim Strategy Services</h2>
+        <!-- $300 ENTRY -->
+        <div class="price-box highlight">
+            <h3>Educational Strategy Consultation</h3>
+            <div class="price">$300</div>
+            <ul>
+                <li>Educational discussion about how VA disability ratings are calculated</li>
+                <li>Walkthrough explaining how to read and interpret a VA decision letter</li>
+                <li>General education about evidence commonly used in disability claims</li>
+                <li>Discussion of possible questions to ask an accredited representative</li>
+                <li>Written summary of educational topics discussed</li>
+            </ul>
+            <p>
+                Most veterans start here to understand their VA decision and determine the best
+                strategy moving forward.
+            </p>
+            <a href="https://buy.stripe.com/dRm00iamk8qkeWb2R74Vy00" class="cta-button" target="_blank">
+                Book $300 Strategy Session
+            </a>
+        </div>
 
-<div class="pricing">
+        <!-- $2,000 EXTENDED -->
+        <div class="price-box">
+            <h3>Extended Education & Strategy Support</h3>
+            <div class="price">$2,000 Flat Fee</div>
+            <ul>
+                <li>Multiple educational consultation sessions</li>
+                <li>In-depth education on VA rating criteria for specific conditions</li>
+                <li>Guidance on organizing documents veterans may choose to submit</li>
+                <li>Preparation discussions before speaking with an accredited representative</li>
+                <li>Ongoing education and claim-process coaching</li>
+            </ul>
+            <p>
+                Veterans remain responsible for submitting any claims, evidence, or appeals through
+                an accredited representative or directly through the Department of Veterans Affairs.
+                The $300 consultation is credited toward the $2,000 fee if you move forward.
+            </p>
+        </div>
 
-<div class="price-box highlight">
-
-<h3>Claim Strategy Session</h3>
-
-<div class="price">$300</div>
-
-<ul>
-
-<li>30-minute consultation reviewing your VA decision letter</li>
-
-<li>Discussion of your service history and current rating</li>
-
-<li>Identification of possible rating or evidence gaps</li>
-
-<li>Written Claim Strategy Roadmap</li>
-
-<li>15-minute follow-up clarification call</li>
-
-</ul>
-
-<p>
-
-Most veterans begin with this session to understand their claim
-and determine the best strategy moving forward.
-
-</p>
-
-<a href="https://buy.stripe.com/dRm00iamk8qkeWb2R74Vy00"
-class="cta-button" target="_blank">
-
-Book $300 Strategy Session
-
-</a>
-
+    </div>
 </div>
-
-<div class="price-box">
-
-<h3>Full Claim Development</h3>
-
-<div class="price">$2,000 Flat Rate</div>
-
-<ul>
-
-<li>Complete claim strategy development</li>
-
-<li>Detailed evidence roadmap</li>
-
-<li>Multiple follow-up consultations</li>
-
-<li>Guidance preparing your documentation</li>
-
-<li>Priority support throughout your claim process</li>
-
-</ul>
-
-<p>
-
-If you choose to move forward with the full service,
-the <strong>$300 consultation is credited toward the $2,000 fee.</strong>
-
-</p>
-
-</div>
-
-</div>
-
-</div>
-
 </section>
 
+<!-- TESTIMONIALS -->
 <section id="testimonials">
-
 <div class="container">
-
-<h2>Veterans I've Helped</h2>
-
-<div class="testimonial">
-
-<p>
-
-"Roberto helped me understand why my claim was denied and exactly
-what I needed to strengthen my evidence before refiling."
-
-</p>
-
-<p><strong>— U.S. Army Veteran</strong></p>
-
+    <h2>Veterans I've Helped</h2>
+    <div class="testimonial">
+        <p>
+            "Roberto helped me understand my VA decision and clarified what steps I could take next."
+        </p>
+        <p><strong>— U.S. Army Veteran</strong></p>
+    </div>
 </div>
-
-</div>
-
 </section>
 
+<!-- RESOURCES -->
 <section id="resources" class="resources">
-
 <div class="container">
-
-<h2>Free Veteran Resources</h2>
-
-<ul>
-
-<li>
-<a href="VA Benefits 4 Step Check List.pdf" target="_blank">
-Free VA Claim Approval Checklist
-</a>
-</li>
-
-<li>
-<a href="calculator.html" target="_blank">
-VA Disability Rating Calculator
-</a>
-</li>
-
-</ul>
-
+    <h2>Free Veteran Resources</h2>
+    <ul>
+        <li><a href="VA Benefits 4 Step Check List.pdf" target="_blank">Free VA Claim Approval Checklist</a></li>
+        <li><a href="calculator.html" target="_blank">VA Disability Rating Calculator</a></li>
+    </ul>
 </div>
-
 </section>
 
+<!-- CONTACT -->
 <section id="contact" class="contact">
-
 <div class="container">
-
-<h2>Start With The $300 Strategy Session</h2>
-
-<p>
-
-Most veterans begin with the strategy session to understand
-their VA decision and identify the best path forward.
-
-</p>
-
-<br>
-
-<a href="https://buy.stripe.com/dRm00iamk8qkeWb2R74Vy00"
-class="cta-button" target="_blank">
-
-Pay $300 & Schedule Consultation
-
-</a>
-
-<br><br>
-
-<p>
-
-After payment email your receipt to<br>
-
-<strong>contact@daxreciprocated.com</strong>
-
-</p>
-
+    <h2>Start With The $300 Strategy Session</h2>
+    <p>
+        During your consultation you may choose to share information about
+        your VA decision or claim history. Sharing documents or information
+        is completely voluntary and used only to support the educational
+        discussion during the consultation.
+    </p>
+    <a href="https://buy.stripe.com/dRm00iamk8qkeWb2R74Vy00" class="cta-button" target="_blank">
+        Pay $300 & Schedule Consultation
+    </a>
+    <br><br>
+    <p>
+        After payment, email your receipt to<br>
+        <strong>contact@daxreciprocated.com</strong>
+    </p>
 </div>
-
 </section>
 
+<!-- FOOTER -->
 <footer>
-
-<p>
-
-© 2026 DAX Reciprocated LLC
-
-</p>
-
+    <p>© 2026 DAX Reciprocated LLC</p>
+    <p class="disclaimer">
+        Important Notice: DAX Reciprocated LLC provides educational consulting services only.
+        These services are not legal representation and do not include preparing, submitting,
+        or prosecuting VA disability claims. Veterans may choose to work with an accredited
+        representative, attorney, or claims agent recognized by the Department of Veterans Affairs.
+    </p>
 </footer>
 
 </body>
