@@ -1,161 +1,424 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DAX Reciprocated LLC | VA Disability Claim Review</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>DAX Reciprocated | VA Disability Claim Strategy</title>
+
+<style>
+
+body{
+font-family:Arial, Helvetica, sans-serif;
+margin:0;
+background:#f4f6f8;
+color:#333;
+}
+
+.container{
+width:90%;
+max-width:1100px;
+margin:auto;
+}
+
+header{
+background:#0b1c2c;
+color:white;
+padding:15px 0;
+position:sticky;
+top:0;
+z-index:999;
+}
+
+nav{
+display:flex;
+justify-content:center;
+gap:30px;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+font-weight:bold;
+}
+
+.hero{
+background:
+linear-gradient(rgba(11,28,44,.92), rgba(11,28,44,.92)),
+url('IMG_1109.png');
+background-size:contain;
+background-repeat:no-repeat;
+background-position:center;
+
+color:white;
+text-align:center;
+padding:120px 20px;
+}
+
+.hero h1{
+font-size:40px;
+margin-bottom:10px;
+}
+
+.tagline{
+font-size:22px;
+margin-bottom:10px;
+}
+
+.subtext{
+max-width:650px;
+margin:auto;
+margin-bottom:30px;
+}
+
+.cta-button{
+background:#e63946;
+color:white;
+padding:14px 28px;
+text-decoration:none;
+border-radius:6px;
+font-weight:bold;
+display:inline-block;
+}
+
+.cta-button:hover{
+background:#d62839;
+}
+
+section{
+padding:70px 0;
+}
+
+h2{
+text-align:center;
+margin-bottom:30px;
+}
+
+.pricing{
+display:flex;
+flex-wrap:wrap;
+gap:25px;
+justify-content:center;
+}
+
+.price-box{
+background:white;
+padding:30px;
+border-radius:10px;
+box-shadow:0 4px 14px rgba(0,0,0,.1);
+flex:1 1 280px;
+max-width:320px;
+}
+
+.price-box h3{
+margin-top:0;
+}
+
+.price{
+font-size:28px;
+color:#0b1c2c;
+font-weight:bold;
+margin-bottom:15px;
+}
+
+.price-box ul{
+padding-left:18px;
+}
+
+.highlight{
+border:3px solid #e63946;
+}
+
+.testimonial{
+background:white;
+padding:25px;
+border-radius:10px;
+box-shadow:0 4px 10px rgba(0,0,0,.1);
+max-width:700px;
+margin:auto;
+}
+
+.resources ul{
+max-width:600px;
+margin:auto;
+}
+
+.resources li{
+margin-bottom:10px;
+}
+
+.contact{
+text-align:center;
+background:#0b1c2c;
+color:white;
+}
+
+footer{
+background:#111;
+color:white;
+text-align:center;
+padding:20px;
+font-size:14px;
+}
+
+.disclaimer{
+font-size:13px;
+opacity:.8;
+margin-top:25px;
+}
+
+</style>
 </head>
+
 <body>
-    <header>
-        <div class="container">
-            <nav>
-                <a href="#about">About</a>
-                <a href="#services">Services</a>
-                <a href="#testimonials">Testimonials</a>
-                <a href="#resources">Resources</a>
-                <a href="#contact">Book Consultation</a>
-            </nav>
-        </div>
-    </header>
 
-    <section class="hero">
-        <div class="container">
-            <h1>Built on Trust. Proven by Results.</h1>
-            <p class="tagline">VA Disability Claim Review & Strategy</p>
-            <p class="subtext">
-                Former Veterans Service Officer. 100+ veterans served. Don't navigate the VA alone.
-            </p>
-            <a href="https://buy.stripe.com/dRm00iamk8qkeWb2R74Vy00"
-   class="cta-button" target="_blank">
-   Book Your $300 Consultation
-</a>
-        </div>
-    </section>
+<header>
+<div class="container">
+<nav>
 
-    <section id="about" class="about">
-        <div class="container">
-            <h2>About DAX Reciprocated</h2>
-            <p>
-                After serving as a Veterans Service Officer, I witnessed too many veterans leave benefits
-                on the table due to missing nexus letters, incomplete forms, or rating calculation errors.
-                DAX Reciprocated LLC was built to give veterans clear education about their decisions and
-                options—one claim at a time.
-            </p>
-            <p><strong>Mission:</strong> Ensure every veteran receives the disability compensation they earned through faithful service.</p>
-            <p class="disclaimer">
-                DAX Reciprocated LLC provides educational information to help veterans better understand
-                their VA disability decisions and options. I am a former Veterans Service Officer, not an
-                attorney. I do not provide legal advice or legal representation, and I am not affiliated
-                with the Department of Veterans Affairs or any veterans service organization. Any
-                information you choose to share with me is provided voluntarily so we can review it
-                together for educational purposes only.
-            </p>
-        </div>
-    </section>
+<a href="#about">About</a>
+<a href="#pricing">Services</a>
+<a href="#testimonials">Testimonials</a>
+<a href="#resources">Resources</a>
+<a href="#contact">Consultation</a>
 
-    <section id="services" class="services">
-        <div class="container">
-            <h2>VA Claim Review Services</h2>
+</nav>
+</div>
+</header>
 
-            <div class="service-box">
-                <h3>Tier 1 – $300 Hybrid Review & Strategy Session</h3>
-                <ul>
-                    <li>30-minute call to discuss your service history, current rating, and goals</li>
-                    <li>We walk through your VA decision letter together so you can better understand what it says and what it doesn’t say</li>
-                    <li>You may choose to share any decision letters or other documents you already have; we review them together for educational purposes only</li>
-                    <li>Written Claim Strategy Roadmap summarizing key points to consider and questions to ask when you speak with your VSO, accredited representative, or attorney</li>
-                    <li>15-minute follow-up call to go over the roadmap and clarify anything that is still confusing</li>
-                </ul>
-            </div>
+<section class="hero">
 
-            <div class="service-box">
-                <h3>Tier 2 – $600 Claim Rebuild & Evidence Planning Session</h3>
-                <ul>
-                    <li>Everything in the $300 Hybrid Review & Strategy Session</li>
-                    <li>Deeper educational walkthrough of how the VA typically looks at evidence for each of your claimed conditions</li>
-                    <li>Guidance on what types of documents veterans often find helpful to gather (for example, private treatment records, DBQs, lay statements)</li>
-                    <li>Template questions and example language you can use when talking with your doctors or representatives (you decide whether and how to use them)</li>
-                </ul>
-            </div>
+<div class="container">
 
-            <div class="service-box">
-                <h3>Tier 3 – $1,200 Premium Support Package</h3>
-                <ul>
-                    <li>Everything in the $600 Claim Rebuild & Evidence Planning Session</li>
-                    <li>Priority turnaround — roadmap delivered within 3 business days of your intake call</li>
-                    <li>Two additional 30-minute follow-up calls for strategy, preparation, or reviewing your progress</li>
-                    <li>Feedback on your self-written personal impact or support statement so you can present your story more clearly (educational guidance only)</li>
-                </ul>
-            </div>
+<h1>Built on Trust. Proven by Results.</h1>
 
-            <p class="disclaimer">
-                These services are for educational purposes only. I do not request records on your behalf,
-                submit claims or appeals, or make decisions for you. You remain in control of what you share
-                and what actions you take. For legal advice or representation, consult an accredited
-                representative or attorney.
-            </p>
+<p class="tagline">VA Disability Claim Strategy & Education</p>
 
-            <a href="https://buy.stripe.com/dRm00iamk8qkeWb2R74Vy00"
-   class="cta-button" target="_blank">
-   Pay $300 & Request Consultation
+<p class="subtext">
+Former Veterans Service Officer helping veterans understand their VA disability
+decisions and develop a smarter strategy before filing their next move.
+</p>
+
+<a href="https://buy.stripe.com/dRm00iamk8qkeWb2R74Vy00"
+class="cta-button" target="_blank">
+
+Start With The $300 Claim Strategy Session
+
 </a>
 
-    <section id="testimonials" class="testimonials">
-        <div class="container">
-            <h2>Veterans I've Helped</h2>
-            <p>Video testimonials coming soon. In the meantime, here’s what veterans say about working with me:</p>
-            <div class="testimonial-box">
-                <p>"[Placeholder for testimonial about increasing rating or fixing a denial.]"</p>
-                <p class="testimonial-name">— U.S. Army Veteran, El Paso</p>
-            </div>
-        </div>
-    </section>
+</div>
 
-    <section id="resources" class="resources">
-        <div class="container">
-            <h2>Free & Low-Cost Resources</h2>
-            <ul>
-                <li>
-                    <a href="VA Benefits 4 Step Check List.pdf" target="_blank">
-                        Free: VA Disability Claim Approval Checklist – The 4-step Framework I Advise Veterans to Use Before Filing
-                    </a>
-                </li>
-                <li>
-                    <a href="YOUR-PAID-GUIDE-LINK" target="_blank">
-                        $29 Guide: How to Read Your VA Decision Letter and Plan Your Next Move
-                    </a>
-                </li>
-                <li>
-                    <a href="calculator.html" target="_blank">
-                        Free: 2026 VA Disability Rating & Payment Calculator
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </section>
+</section>
 
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2>Book Your Consultation</h2>
-            <p>Ready to better understand your VA disability rating and plan your next move? Click below to start with the $300 Hybrid Review & Strategy Session.</p>
-            <!-- Replace with your actual Stripe or booking link -->
-            <a href="https://buy.stripe.com/dRm00iamk8qkeWb2R74Vy00"
-   class="cta-button" target="_blank">
-   Book Your $300 Consultation
+<section id="about">
+
+<div class="container">
+
+<h2>About DAX Reciprocated</h2>
+
+<p>
+After serving as a Veterans Service Officer, I saw many veterans leave benefits on the table
+because of missing nexus letters, weak evidence, or misunderstanding how VA ratings work.
+</p>
+
+<p>
+DAX Reciprocated was created to help veterans better understand their decisions,
+their options, and the strategy behind building a stronger claim.
+</p>
+
+<p><strong>100+ Veterans Served</strong></p>
+
+<p class="disclaimer">
+
+DAX Reciprocated LLC provides educational information to help veterans better understand
+their VA disability decisions and options. I am a former Veterans Service Officer, not an
+attorney, and I am not affiliated with the Department of Veterans Affairs.
+
+</p>
+
+</div>
+
+</section>
+
+<section id="pricing">
+
+<div class="container">
+
+<h2>VA Claim Strategy Services</h2>
+
+<div class="pricing">
+
+<div class="price-box highlight">
+
+<h3>Starter Strategy Session</h3>
+
+<div class="price">$300</div>
+
+<ul>
+
+<li>30 minute strategy consultation</li>
+
+<li>Review of your VA decision letter</li>
+
+<li>Identify possible rating or evidence gaps</li>
+
+<li>Written Claim Strategy Roadmap</li>
+
+<li>15 minute follow-up clarification call</li>
+
+</ul>
+
+<a href="https://buy.stripe.com/dRm00iamk8qkeWb2R74Vy00"
+class="cta-button" target="_blank">
+
+Book Session
+
 </a>
-            <p class="small">
-                After payment, email your receipt and preferred days/times to
-                <strong>contact@daxreciprocated.com</strong>. You choose what information or documents
-                you are comfortable sharing, and we will review them together for educational purposes only.
-            </p>
-        </div>
-    </section>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 DAX Reciprocated LLC. Built on trust. Proven by results.</p>
-        </div>
-    </footer>
+</div>
+
+<div class="price-box">
+
+<h3>Evidence Planning Session</h3>
+
+<div class="price">$600</div>
+
+<ul>
+
+<li>Everything in Starter Session</li>
+
+<li>Deep dive into each condition</li>
+
+<li>Evidence strategy guidance</li>
+
+<li>Templates for statements and documentation</li>
+
+</ul>
+
+</div>
+
+<div class="price-box">
+
+<h3>Full Claim Development</h3>
+
+<div class="price">$2,000</div>
+
+<ul>
+
+<li>Complete claim strategy development</li>
+
+<li>Evidence roadmap</li>
+
+<li>Priority support</li>
+
+<li>Multiple follow up consultations</li>
+
+<li>Claim preparation guidance</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="testimonials">
+
+<div class="container">
+
+<h2>Veterans I've Helped</h2>
+
+<div class="testimonial">
+
+<p>
+
+"Roberto helped me understand why my claim was denied and exactly what I needed
+to strengthen my evidence before refiling."
+
+</p>
+
+<p><strong>— U.S. Army Veteran</strong></p>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="resources" class="resources">
+
+<div class="container">
+
+<h2>Free Veteran Resources</h2>
+
+<ul>
+
+<li>
+<a href="VA Benefits 4 Step Check List.pdf" target="_blank">
+Free VA Claim Approval Checklist
+</a>
+</li>
+
+<li>
+<a href="calculator.html" target="_blank">
+VA Disability Rating Calculator
+</a>
+</li>
+
+</ul>
+
+</div>
+
+</section>
+
+<section id="contact" class="contact">
+
+<div class="container">
+
+<h2>Start With The $300 Strategy Session</h2>
+
+<p>
+
+Most veterans start with the strategy session to understand
+their VA decision and identify their best next step.
+
+</p>
+
+<br>
+
+<a href="https://buy.stripe.com/dRm00iamk8qkeWb2R74Vy00"
+class="cta-button" target="_blank">
+
+Pay $300 & Schedule Consultation
+
+</a>
+
+<br><br>
+
+<p>
+
+After payment email your receipt to<br>
+
+<strong>contact@daxreciprocated.com</strong>
+
+</p>
+
+</div>
+
+</section>
+
+<footer>
+
+<p>
+
+© 2026 DAX Reciprocated LLC
+
+</p>
+
+</footer>
+
 </body>
 </html>
