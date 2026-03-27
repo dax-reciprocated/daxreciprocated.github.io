@@ -225,7 +225,7 @@ select, input {
 <body>
 <div class="card">
     <h1>🇺🇸 New VA Calculator 2026 by DAX Reciprocated</h1>
-    <div class="subtitle">2026 Rates • Live Bilateral Math</div>
+    <div class="subtitle">2026 Rates • Live VA Math</div>
 
     <!-- BODY AREA SELECTION -->
     <label class="section-title">1. Choose Body Area</label>
@@ -261,56 +261,16 @@ select, input {
         <div class="details">Combined Rating (Rounded)</div>
         <div class="big-rate" id="finalRating">0%</div>
         <div class="sub-rate" id="rawRating">Exact Raw Score: 0%</div>
-        <div class="pay-rate" id="monthlyPay">$0.00 / mo</div>
-    </div>
-
-    <div class="bilateral-box" id="bilateralBox">
-        <div class="bilateral-title">⚡ Bilateral Factor Applied</div>
-        <div id="bilateralMath"></div>
+        <div class="pay-rate" id="monthlyPay">$0.00 / mo (Veteran alone)</div>
     </div>
 
     <!-- LIST OF ADDED ITEMS -->
     <div class="list-container" id="listContainer" style="display:none;"></div>
 
-    <!-- DEPENDENCY SETTINGS -->
+    <!-- SIMPLE SETTINGS NOTE -->
     <div class="settings">
-        <div>
-            <label>Marital Status</label>
-            <select id="status" onchange="calculate()">
-                <option value="single">Veteran Alone</option>
-                <option value="spouse">Married</option>
-            </select>
-        </div>
-
-        <div>
-            <label>Children (&lt; 18)</label>
-            <select id="childrenUnder18" onchange="calculate()">
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-            </select>
-        </div>
-
-        <div>
-            <label>Children (18–24)</label>
-            <select id="children18to24" onchange="calculate()">
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-            </select>
-        </div>
-
-        <div>
-            <label>Dependent Parents</label>
-            <select id="parents" onchange="calculate()">
-                <option value="0">0</option>
-                <option value="1">1 Parent</option>
-                <option value="2">2 Parents</option>
-            </select>
+        <div style="grid-column: span 2; font-size:0.8rem; color:#555;">
+            This demo shows 2026 pay for a veteran alone. Dependency adjustments will change the actual VA amount.[web:165][web:169]
         </div>
     </div>
 
@@ -333,7 +293,7 @@ select, input {
     <a href="https://buy.stripe.com/dRm00iamk8qkeWb2R74Vy00"
        style="display:inline-block;background:#2e8540;color:#fff;padding:12px 26px;border-radius:6px;
               text-decoration:none;font-weight:bold;">
-        Pay $300 & Request Consultation
+        Request Consultation
     </a>
     <p style="font-size: 0.8rem; color:#777; margin-top:10px;">
         After payment, email your receipt and preferred days/times to
@@ -343,83 +303,125 @@ select, input {
 </div>
 
 <script>
-    // ==========================
-    // VA CALCULATOR LOGIC
-    // ==========================
-    let items = [];
-    let currentSelection = { name: null, type: null, value: null };
+// ==========================
+// VA CALCULATOR LOGIC (2026)
+// ==========================
+let items = [];
+let currentSelection = { name: null, type: null, value: null };
 
-    // Example rates object (simplified - replace with full 2026 values)
-    const rates = {
-        'Left Arm': { upper: 10, lower: 10 },
-        'Right Arm': { upper: 10, lower: 10 },
-        'Left Leg': { upper: 10, lower: 10 },
-        'Right Leg': { upper: 10, lower: 10 },
-        'Other / Systemic': { other: 10 }
-    };
+// 2026 VA monthly pay for a veteran alone (no dependents).[web:169]
+const payTable2026_single = {
+    0: 0.00,
+    10: 180.42,
+    20: 356.66,
+    30: 552.47,
+    40: 795.84,
+    50: 1132.90,
+    60: 1435.02,
+    70: 1808.45,
+    80: 2102.15,
+    90: 2362.30,
+    100: 3938.58
+};
 
-    function setPart(name, type, btn) {
-        currentSelection.name = name;
-        currentSelection.type = type;
-        Array.from(document.querySelectorAll('.btn-body')).forEach(b => b.classList.remove('selected'));
-        btn.classList.add('selected');
-        checkAddButton();
+// BODY PART SELECTION
+function setPart(name, type, btn) {
+    currentSelection.name = name;
+    currentSelection.type = type;
+    document.querySelectorAll('.btn-body').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    checkAddButton();
+}
+
+// PERCENT SELECTION
+function setPercent(val, btn) {
+    currentSelection.value = val;
+    document.querySelectorAll('.btn-percent').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    checkAddButton();
+}
+
+function checkAddButton() {
+    const addBtn = document.getElementById('addBtn');
+    const ready = currentSelection.name && currentSelection.value !== null;
+    if (ready) {
+        addBtn.classList.add('active');
+    } else {
+        addBtn.classList.remove('active');
     }
+}
 
-    function setPercent(val, btn) {
-        currentSelection.value = val;
-        Array.from(document.querySelectorAll('.btn-percent')).forEach(b => b.classList.remove('selected'));
-        btn.classList.add('selected');
-        checkAddButton();
-    }
+// ADD ITEM
+function addItem() {
+    if (!currentSelection.name || currentSelection.value === null) return;
+    items.push({ ...currentSelection });
+    currentSelection = { name: null, type: null, value: null };
+    document.querySelectorAll('.btn-body, .btn-percent').forEach(b => b.classList.remove('selected'));
+    document.getElementById('addBtn').classList.remove('active');
+    renderList();
+    calculate();
+}
 
-    function checkAddButton() {
-        const addBtn = document.getElementById('addBtn');
-        addBtn.classList.toggle('active', currentSelection.name && currentSelection.value !== null);
+// RENDER LIST
+function renderList() {
+    const container = document.getElementById('listContainer');
+    container.innerHTML = '';
+    if (!items.length) {
+        container.style.display = 'none';
+        return;
     }
+    container.style.display = 'block';
+    items.forEach((item, idx) => {
+        const div = document.createElement('div');
+        div.className = 'list-item';
+        div.innerHTML = `
+            <span>${item.name} - ${item.value}%</span>
+            <span class="delete-btn" onclick="deleteItem(${idx})">×</span>
+        `;
+        container.appendChild(div);
+    });
+}
 
-    function addItem() {
-        if (!currentSelection.name || currentSelection.value === null) return;
-        items.push({...currentSelection});
-        currentSelection = { name: null, type: null, value: null };
-        Array.from(document.querySelectorAll('.btn-body, .btn-percent')).forEach(b => b.classList.remove('selected'));
-        document.getElementById('addBtn').classList.remove('active');
-        renderList();
-        calculate();
-    }
+function deleteItem(idx) {
+    items.splice(idx, 1);
+    renderList();
+    calculate();
+}
 
-    function renderList() {
-        const container = document.getElementById('listContainer');
-        container.innerHTML = '';
-        if (!items.length) { container.style.display = 'none'; return; }
-        container.style.display = 'block';
-        items.forEach((item, idx) => {
-            const div = document.createElement('div');
-            div.className = 'list-item';
-            div.innerHTML = `${item.name} - ${item.value}% <span class="delete-btn" onclick="deleteItem(${idx})">×</span>`;
-            container.appendChild(div);
-        });
-    }
+// TRUE VA COMBINED RATING MATH.[web:170][web:173][web:179]
+function vaCombine(ratings) {
+    if (!ratings.length) return 0;
 
-    function deleteItem(idx) {
-        items.splice(idx, 1);
-        renderList();
-        calculate();
-    }
+    // Sort from highest to lowest
+    const sorted = ratings.slice().sort((a, b) => b - a);
 
-    function vaCombine() {
-        // Simple example: sum all ratings with maximum 100%
-        let raw = items.reduce((sum, i) => sum + i.value, 0);
-        if (raw > 100) raw = 100;
-        return raw;
-    }
+    let efficiency = 100;
+    sorted.forEach(r => {
+        efficiency = efficiency * (1 - r / 100);
+    });
 
-    function calculate() {
-        const raw = vaCombine();
-        document.getElementById('rawRating').innerText = `Exact Raw Score: ${raw}%`;
-        document.getElementById('finalRating').innerText = `${Math.round(raw)}%`;
-        document.getElementById('monthlyPay').innerText = `$${Math.round(raw*15)} / mo`; // example pay calc
-    }
+    const rawDisabled = 100 - efficiency;
+    return rawDisabled;
+}
+
+function roundToNearest10(val) {
+    return Math.round(val / 10) * 10;
+}
+
+// MAIN CALC
+function calculate() {
+    const ratings = items.map(i => i.value).filter(v => v > 0);
+
+    const raw = vaCombine(ratings);
+    const rounded = roundToNearest10(raw);
+
+    const rawDisplay = raw.toFixed(1);
+    const pay = payTable2026_single[rounded] || 0;
+
+    document.getElementById('rawRating').innerText = `Exact Raw Score: ${rawDisplay}%`;
+    document.getElementById('finalRating').innerText = `${rounded}%`;
+    document.getElementById('monthlyPay').innerText = `$${pay.toFixed(2)} / mo (Veteran alone)`;
+}
 </script>
 
 </body>
