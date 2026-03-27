@@ -145,7 +145,7 @@ h1 {
 }
 
 .pay-rate {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
 }
 
 .bilateral-box {
@@ -218,6 +218,7 @@ select, input {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 6px;
+    font-size: 0.9rem;
 }
 </style>
 </head>
@@ -225,7 +226,7 @@ select, input {
 <body>
 <div class="card">
     <h1>🇺🇸 New VA Calculator 2026 by DAX Reciprocated</h1>
-    <div class="subtitle">2026 Rates • Live VA Math</div>
+    <div class="subtitle">2026 Rates • VA Math • Bilateral Factor</div>
 
     <!-- BODY AREA SELECTION -->
     <label class="section-title">1. Choose Body Area</label>
@@ -261,22 +262,63 @@ select, input {
         <div class="details">Combined Rating (Rounded)</div>
         <div class="big-rate" id="finalRating">0%</div>
         <div class="sub-rate" id="rawRating">Exact Raw Score: 0%</div>
-        <div class="pay-rate" id="monthlyPay">$0.00 / mo (Veteran alone)</div>
+        <div class="pay-rate" id="monthlyPay">$0.00 / mo (Estimate based on dependents)</div>
+    </div>
+
+    <!-- BILATERAL DETAILS -->
+    <div class="bilateral-box" id="bilateralBox">
+        <div class="bilateral-title">⚡ Bilateral Factor Applied (Educational Example)</div>
+        <div id="bilateralMath"></div>
     </div>
 
     <!-- LIST OF ADDED ITEMS -->
     <div class="list-container" id="listContainer" style="display:none;"></div>
 
-    <!-- SIMPLE SETTINGS NOTE -->
+    <!-- DEPENDENCY SETTINGS -->
     <div class="settings">
-        <div style="grid-column: span 2; font-size:0.8rem; color:#555;">
-            This demo shows 2026 pay for a veteran alone. Dependency adjustments will change the actual VA amount.[web:165][web:169]
+        <div>
+            <label>Marital Status</label>
+            <select id="status" onchange="calculate()">
+                <option value="single">Veteran Alone</option>
+                <option value="spouse">Married</option>
+            </select>
+        </div>
+
+        <div>
+            <label>Children (&lt; 18)</label>
+            <select id="childrenUnder18" onchange="calculate()">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select>
+        </div>
+
+        <div>
+            <label>Children (18–24)</label>
+            <select id="children18to24" onchange="calculate()">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select>
+        </div>
+
+        <div>
+            <label>Dependent Parents</label>
+            <select id="parents" onchange="calculate()">
+                <option value="0">0</option>
+                <option value="1">1 Parent</option>
+                <option value="2">2 Parents</option>
+            </select>
         </div>
     </div>
 
     <!-- DISCLAIMER -->
     <div class="disclaimer">
-        <strong>Educational Use Disclaimer:</strong> This tool is for educational purposes only and does not provide legal, medical, or official VA advice. Results are estimates and may differ from actual VA decisions.
+        <strong>Educational Use Disclaimer:</strong> This tool is for educational purposes only and does not provide legal, medical, or official VA advice. Results are estimates and may differ from actual VA decisions or official rate tables.[web:165][web:166][web:169]
     </div>
 </div>
 
@@ -309,19 +351,55 @@ select, input {
 let items = [];
 let currentSelection = { name: null, type: null, value: null };
 
-// 2026 VA monthly pay for a veteran alone (no dependents).[web:169]
-const payTable2026_single = {
-    0: 0.00,
-    10: 180.42,
-    20: 356.66,
-    30: 552.47,
-    40: 795.84,
-    50: 1132.90,
-    60: 1435.02,
-    70: 1808.45,
-    80: 2102.15,
-    90: 2362.30,
-    100: 3938.58
+// Simplified 2026 pay lookup for key dependency combos.[web:172][web:181][web:183]
+const payTable2026 = {
+    // Veteran alone
+    single: {
+        0: 0.00,
+        10: 180.42,
+        20: 356.66,
+        30: 552.47,
+        40: 795.84,
+        50: 1132.90,
+        60: 1435.02,
+        70: 1808.45,
+        80: 2102.15,
+        90: 2362.30,
+        100: 3938.58
+    },
+    // Veteran with spouse, no children, no parents (approx).
+    spouse: {
+        30: 621.47,
+        40: 887.84,
+        50: 1248.90,
+        60: 1566.02,
+        70: 1944.45,
+        80: 2261.15,
+        90: 2540.30,
+        100: 4187.99
+    },
+    // Veteran with one child only (no spouse/parents).[web:172]
+    single_child: {
+        30: 596.47,
+        40: 853.84,
+        50: 1205.90,
+        60: 1523.02,
+        70: 1910.45,
+        80: 2219.15,
+        90: 2494.30,
+        100: 4085.43
+    },
+    // Veteran with spouse + one child (no parents).[web:172][web:183]
+    spouse_child: {
+        30: 666.47,
+        40: 947.84,
+        50: 1322.90,
+        60: 1663.02,
+        70: 2074.45,
+        80: 2406.15,
+        90: 2704.30,
+        100: 4318.99
+    }
 };
 
 // BODY PART SELECTION
@@ -388,18 +466,14 @@ function deleteItem(idx) {
     calculate();
 }
 
-// TRUE VA COMBINED RATING MATH.[web:170][web:173][web:179]
+// VA COMBINED RATING MATH + BILATERAL.[web:170][web:171][web:180][web:182]
 function vaCombine(ratings) {
     if (!ratings.length) return 0;
-
-    // Sort from highest to lowest
     const sorted = ratings.slice().sort((a, b) => b - a);
-
     let efficiency = 100;
     sorted.forEach(r => {
         efficiency = efficiency * (1 - r / 100);
     });
-
     const rawDisabled = 100 - efficiency;
     return rawDisabled;
 }
@@ -408,19 +482,115 @@ function roundToNearest10(val) {
     return Math.round(val / 10) * 10;
 }
 
+// Separate ratings into bilateral vs other and apply bilateral factor.
+function applyBilateralFactor() {
+    const bilateralBox = document.getElementById('bilateralBox');
+    const mathDiv = document.getElementById('bilateralMath');
+
+    // Arms/legs for bilateral purposes
+    const bilateralItems = items.filter(i =>
+        i.name === 'Left Arm' ||
+        i.name === 'Right Arm' ||
+        i.name === 'Left Leg' ||
+        i.name === 'Right Leg'
+    ).map(i => i.value).filter(v => v > 0);
+
+    const otherItems = items.filter(i =>
+        i.name === 'Other / Systemic'
+    ).map(i => i.value).filter(v => v > 0);
+
+    // Only apply bilateral if there are at least 2 qualifying ratings.[web:171][web:185]
+    if (bilateralItems.length < 2) {
+        bilateralBox.style.display = 'none';
+        mathDiv.innerHTML = '';
+        return {
+            combinedWithBilateral: vaCombine(bilateralItems.concat(otherItems)),
+            rawBilateralOnly: null
+        };
+    }
+
+    // Step 1: combine bilateral items.
+    const bilateralRaw = vaCombine(bilateralItems);
+    // Step 2: add 10% of that combined value.
+    const bilateralWithFactor = bilateralRaw + (0.10 * bilateralRaw);
+    // Step 3: round bilateral result to one decimal for display.
+    const bilateralDisplay = bilateralWithFactor.toFixed(1);
+
+    // Step 4: combine this bilateral block with the "other" ratings.
+    const combined = vaCombine([bilateralWithFactor, ...otherItems]);
+
+    // Show math steps for educational purposes.
+    bilateralBox.style.display = 'block';
+    mathDiv.innerHTML = '';
+    mathDiv.innerHTML += `<div class="math-step">Bilateral-eligible ratings combined: ${bilateralRaw.toFixed(1)}%</div>`;
+    mathDiv.innerHTML += `<div class="math-step">+ 10% of ${bilateralRaw.toFixed(1)}% = ${(0.10 * bilateralRaw).toFixed(1)}%</div>`;
+    mathDiv.innerHTML += `<div class="math-step">Bilateral block total: ${bilateralDisplay}% (before combining with other ratings)</div>`;
+
+    return {
+        combinedWithBilateral: combined,
+        rawBilateralOnly: bilateralWithFactor
+    };
+}
+
+// Determine dependency key and pick best‑fit pay table entry.
+function getDependencyKeyAndInfo(roundedRating) {
+    const status = document.getElementById('status').value;
+    const childrenUnder18 = parseInt(document.getElementById('childrenUnder18').value, 10) || 0;
+    const children18to24 = parseInt(document.getElementById('children18to24').value, 10) || 0;
+    const parents = parseInt(document.getElementById('parents').value, 10) || 0;
+
+    const totalKids = Math.min(childrenUnder18 + children18to24, 4); // cap at 4
+    const cappedParents = Math.min(parents, 2);
+
+    // Simple mapping for a few common scenarios; everything else is labeled approximate.[web:172][web:181]
+    let key = 'single';
+    let description = 'Veteran alone';
+
+    if (status === 'single') {
+        if (totalKids === 0) {
+            key = 'single';
+            description = 'Veteran alone';
+        } else if (totalKids === 1 && cappedParents === 0) {
+            key = 'single_child';
+            description = 'Veteran with 1 child';
+        } else {
+            key = 'single_child';
+            description = `Veteran with children / parents (approximate)`;
+        }
+    } else if (status === 'spouse') {
+        if (totalKids === 0 && cappedParents === 0) {
+            key = 'spouse';
+            description = 'Veteran with spouse';
+        } else if (totalKids === 1 && cappedParents === 0) {
+            key = 'spouse_child';
+            description = 'Veteran with spouse and 1 child';
+        } else {
+            key = 'spouse_child';
+            description = 'Veteran with spouse, children and/or parents (approximate)';
+        }
+    }
+
+    const table = payTable2026[key] || payTable2026.single;
+    const pay = table[roundedRating];
+
+    return { pay, description };
+}
+
 // MAIN CALC
 function calculate() {
-    const ratings = items.map(i => i.value).filter(v => v > 0);
+    const { combinedWithBilateral } = applyBilateralFactor();
 
-    const raw = vaCombine(ratings);
+    const raw = combinedWithBilateral || 0;
     const rounded = roundToNearest10(raw);
-
     const rawDisplay = raw.toFixed(1);
-    const pay = payTable2026_single[rounded] || 0;
+
+    const depInfo = getDependencyKeyAndInfo(rounded);
+    const payVal = depInfo.pay || 0;
+    const payText = payVal ? `$${payVal.toFixed(2)} / mo (${depInfo.description})` : `$0.00 / mo (${depInfo.description})`;
 
     document.getElementById('rawRating').innerText = `Exact Raw Score: ${rawDisplay}%`;
     document.getElementById('finalRating').innerText = `${rounded}%`;
-    document.getElementById('monthlyPay').innerText = `$${pay.toFixed(2)} / mo (Veteran alone)`;
+    document.getElementById('monthlyPay').innerText = payText;
 }
 </script>
 
