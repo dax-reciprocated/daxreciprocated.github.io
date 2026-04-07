@@ -3,596 +3,252 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>New VA Calculator 2026 by DAX Reciprocated</title>
-
+<title>VA Disability Calculator 2026 | DAX Reciprocated</title>
 <style>
-:root {
-    --primary: #003087;
-    --secondary: #005ea2;
-    --accent: #e1f3f8;
-    --text: #333;
-    --bilateral: #1a73e8;
+:root{
+    --primary:#7a0f14;
+    --primary-dark:#540b0f;
+    --secondary:#202531;
+    --accent:#f6f1eb;
+    --surface:#ffffff;
+    --surface-2:#f8f6f2;
+    --text:#1f2430;
+    --muted:#5f6777;
+    --success:#2f6f3e;
+    --border:#ddd6cc;
+    --bilateral:#1d5fd0;
+    --shadow:0 12px 30px rgba(0,0,0,.08);
 }
-
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    background: #f0f2f5;
-    color: var(--text);
+*{box-sizing:border-box}
+body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:linear-gradient(180deg,#f4f1eb 0%,#ece7df 100%);
+    color:var(--text);
+    line-height:1.5;
+    padding:20px;
 }
-
-.card {
-    background: white;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+.wrap{
+    max-width:760px;
+    margin:0 auto;
 }
-
-h1 {
-    text-align: center;
-    color: var(--primary);
-    margin-bottom: 5px;
-    font-size: 1.8rem;
+.card{
+    background:var(--surface);
+    border-radius:18px;
+    box-shadow:var(--shadow);
+    padding:24px;
+    border:1px solid rgba(0,0,0,.05);
 }
-
-.subtitle {
-    text-align: center;
-    color: #666;
-    font-size: 0.9em;
-    margin-bottom: 25px;
+h1{
+    margin:0 0 6px;
+    text-align:center;
+    color:var(--primary);
+    font-size:clamp(1.9rem,3vw,2.4rem);
+    line-height:1.1;
 }
-
-.section-title {
-    font-weight: 700;
-    color: var(--secondary);
-    margin-bottom: 10px;
-    display: block;
-    text-transform: uppercase;
-    font-size: 0.85rem;
-    letter-spacing: 1px;
+.subtitle{
+    text-align:center;
+    color:var(--muted);
+    font-size:.98rem;
+    margin-bottom:24px;
 }
-
-.body-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-bottom: 20px;
+.notice{
+    background:var(--accent);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:14px 16px;
+    margin-bottom:20px;
+    color:#473d34;
+    font-size:.92rem;
 }
-
-.percent-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 8px;
-    margin-bottom: 25px;
+.section-title{
+    font-weight:800;
+    color:var(--secondary);
+    margin:18px 0 10px;
+    display:block;
+    text-transform:uppercase;
+    font-size:.8rem;
+    letter-spacing:1.2px;
 }
-
-.btn-body, .btn-percent {
-    padding: 15px;
-    border: 2px solid #e0e0e0;
-    border-radius: 8px;
-    background: white;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: 600;
-    color: #555;
-    transition: all 0.2s;
+.body-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+    margin-bottom:20px;
 }
-
-.btn-percent {
-    padding: 12px 0;
-    font-size: 0.95rem;
+.percent-grid{
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    gap:8px;
+    margin-bottom:20px;
 }
-
-.btn-body:hover, .btn-percent:hover {
-    border-color: var(--secondary);
-    background: #f9f9f9;
+.btn-body,.btn-percent,.btn-small{
+    appearance:none;
+    border:2px solid #e5e1db;
+    background:#fff;
+    color:#4f5563;
+    border-radius:10px;
+    cursor:pointer;
+    transition:.2s ease;
+    font-weight:700;
 }
-
-.selected {
-    background: var(--secondary) !important;
-    color: white !important;
-    border-color: var(--primary) !important;
+.btn-body{
+    padding:14px;
+    font-size:1rem;
 }
-
-.full-width {
-    grid-column: span 2;
+.btn-percent{
+    padding:12px 0;
+    font-size:.95rem;
 }
-
-.btn-add {
-    width: 100%;
-    background: #2e8540;
-    color: white;
-    border: none;
-    padding: 16px;
-    font-size: 1.1rem;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-    margin-bottom: 20px;
-    opacity: 0.5;
-    pointer-events: none;
-    transition: opacity 0.2s;
+.btn-small{
+    padding:10px 14px;
+    font-size:.92rem;
 }
-
-.btn-add.active {
-    opacity: 1;
-    pointer-events: auto;
+.btn-body:hover,.btn-percent:hover,.btn-small:hover{
+    border-color:var(--primary);
+    transform:translateY(-1px);
 }
-
-.result-box {
-    background: var(--primary);
-    color: white;
-    border-radius: 8px;
-    padding: 25px;
-    text-align: center;
-    margin-bottom: 20px;
+.selected{
+    background:var(--primary)!important;
+    color:#fff!important;
+    border-color:var(--primary-dark)!important;
 }
-
-.big-rate {
-    font-size: 3.5rem;
-    font-weight: 800;
-    line-height: 1;
-    margin: 10px 0;
+.full-width{grid-column:span 2}
+.action-row{
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:10px;
+    margin:10px 0 20px;
 }
-
-.sub-rate {
-    font-size: 1.1rem;
-    color: #ffd700;
-    font-weight: bold;
-    margin-bottom: 5px;
+.btn-add{
+    width:100%;
+    background:var(--success);
+    color:#fff;
+    border:none;
+    padding:16px;
+    font-size:1.06rem;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:800;
+    opacity:.45;
+    pointer-events:none;
+    transition:.2s ease;
 }
-
-.pay-rate {
-    font-size: 1.05rem;
+.btn-add.active{
+    opacity:1;
+    pointer-events:auto;
 }
-
-.bilateral-box {
-    background: #e8f0fe;
-    border-left: 5px solid var(--bilateral);
-    padding: 15px;
-    margin-bottom: 20px;
-    border-radius: 4px;
-    display: none;
+.result-box{
+    background:linear-gradient(135deg,var(--secondary) 0%, #11151d 100%);
+    color:#fff;
+    border-radius:16px;
+    padding:24px;
+    text-align:center;
+    margin-bottom:18px;
 }
-
-.bilateral-title {
-    color: var(--bilateral);
-    font-weight: bold;
-    margin-bottom: 5px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
+.result-label{
+    font-size:.9rem;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    opacity:.8;
 }
-
-.math-step {
-    font-size: 0.9rem;
-    margin-bottom: 4px;
-    color: #444;
+.big-rate{
+    font-size:3.6rem;
+    font-weight:900;
+    line-height:1;
+    margin:10px 0;
 }
-
-.list-container {
-    background: #f8f9fa;
-    border-radius: 8px;
-    border: 1px solid #eee;
-    margin-bottom: 20px;
+.sub-rate{
+    font-size:1.02rem;
+    color:#f3d56b;
+    font-weight:700;
+    margin-bottom:6px;
 }
-
-.list-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 12px 15px;
-    border-bottom: 1px solid #e0e0e0;
-    font-size: 0.95rem;
+.pay-rate{
+    font-size:1.02rem;
 }
-
-.delete-btn {
-    color: #d93025;
-    cursor: pointer;
-    font-weight: bold;
-    padding-left: 10px;
+.helper{
+    margin-top:10px;
+    font-size:.84rem;
+    color:#d7dbe2;
 }
-
-.disclaimer {
-    font-size: 0.75rem;
-    color: #777;
-    text-align: center;
-    margin-top: 30px;
-    line-height: 1.4;
-    border-top: 1px solid #ddd;
-    padding-top: 15px;
+.bilateral-box,.math-box{
+    background:#eef4ff;
+    border-left:5px solid var(--bilateral);
+    padding:15px;
+    margin-bottom:16px;
+    border-radius:8px;
+    display:none;
 }
-
-.settings {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-    padding-top: 10px;
-    border-top: 1px solid #eee;
-    margin-bottom: 20px;
+.bilateral-title{
+    color:var(--bilateral);
+    font-weight:800;
+    margin-bottom:8px;
 }
-
-select, input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 0.9rem;
+.math-step{
+    font-size:.92rem;
+    margin-bottom:5px;
+    color:#344054;
 }
-</style>
-</head>
-
-<body>
-<div class="card">
-    <h1>🇺🇸 New VA Calculator 2026 by DAX Reciprocated</h1>
-    <div class="subtitle">2026 Rates • VA Math • Bilateral Factor</div>
-
-    <!-- BODY AREA SELECTION -->
-    <label class="section-title">1. Choose Body Area</label>
-    <div class="body-grid">
-        <button class="btn-body" onclick="setPart('Left Arm', 'upper', this)">Left Arm</button>
-        <button class="btn-body" onclick="setPart('Right Arm', 'upper', this)">Right Arm</button>
-        <button class="btn-body" onclick="setPart('Left Leg', 'lower', this)">Left Leg</button>
-        <button class="btn-body" onclick="setPart('Right Leg', 'lower', this)">Right Leg</button>
-        <button class="btn-body full-width" onclick="setPart('Other / Systemic', 'other', this)">Other (Head, Back, Organs)</button>
-    </div>
-
-    <!-- PERCENTAGE SELECTION -->
-    <label class="section-title">2. Choose Rating %</label>
-    <div class="percent-grid">
-        <button class="btn-percent" onclick="setPercent(0, this)">0%</button>
-        <button class="btn-percent" onclick="setPercent(10, this)">10%</button>
-        <button class="btn-percent" onclick="setPercent(20, this)">20%</button>
-        <button class="btn-percent" onclick="setPercent(30, this)">30%</button>
-        <button class="btn-percent" onclick="setPercent(40, this)">40%</button>
-        <button class="btn-percent" onclick="setPercent(50, this)">50%</button>
-        <button class="btn-percent" onclick="setPercent(60, this)">60%</button>
-        <button class="btn-percent" onclick="setPercent(70, this)">70%</button>
-        <button class="btn-percent" onclick="setPercent(80, this)">80%</button>
-        <button class="btn-percent" onclick="setPercent(90, this)">90%</button>
-        <button class="btn-percent" onclick="setPercent(100, this)">100%</button>
-    </div>
-
-    <!-- ADD DISABILITY BUTTON -->
-    <button id="addBtn" class="btn-add" onclick="addItem()">+ Add Disability</button>
-
-    <!-- RESULTS -->
-    <div class="result-box">
-        <div class="details">Combined Rating (Rounded)</div>
-        <div class="big-rate" id="finalRating">0%</div>
-        <div class="sub-rate" id="rawRating">Exact Raw Score: 0%</div>
-        <div class="pay-rate" id="monthlyPay">$0.00 / mo (Estimate based on dependents)</div>
-    </div>
-
-    <!-- BILATERAL DETAILS -->
-    <div class="bilateral-box" id="bilateralBox">
-        <div class="bilateral-title">⚡ Bilateral Factor Applied (Educational Example)</div>
-        <div id="bilateralMath"></div>
-    </div>
-
-    <!-- LIST OF ADDED ITEMS -->
-    <div class="list-container" id="listContainer" style="display:none;"></div>
-
-    <!-- DEPENDENCY SETTINGS -->
-    <div class="settings">
-        <div>
-            <label>Marital Status</label>
-            <select id="status" onchange="calculate()">
-                <option value="single">Veteran Alone</option>
-                <option value="spouse">Married</option>
-            </select>
-        </div>
-
-        <div>
-            <label>Children (&lt; 18)</label>
-            <select id="childrenUnder18" onchange="calculate()">
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-            </select>
-        </div>
-
-        <div>
-            <label>Children (18–24)</label>
-            <select id="children18to24" onchange="calculate()">
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-            </select>
-        </div>
-
-        <div>
-            <label>Dependent Parents</label>
-            <select id="parents" onchange="calculate()">
-                <option value="0">0</option>
-                <option value="1">1 Parent</option>
-                <option value="2">2 Parents</option>
-            </select>
-        </div>
-    </div>
-
-    <!-- DISCLAIMER -->
-    <div class="disclaimer">
-        <strong>Educational Use Disclaimer:</strong> This tool is for educational purposes only and does not provide legal, medical, or official VA advice. Results are estimates and may differ from actual VA decisions or official rate tables.[web:165][web:166][web:169]
-    </div>
-</div>
-
-<!-- CONSULTATION CTA -->
-<div style="max-width: 600px; margin: 30px auto 20px; text-align: center;">
-    <hr style="margin-bottom: 20px; border: none; border-top: 1px solid #ddd;">
-    <h2 style="font-size: 1.4rem; margin-bottom: 10px; color: #003087;">
-        Want help interpreting these results?
-    </h2>
-    <p style="font-size: 0.95rem; margin-bottom: 15px; color: #444;">
-        If you’re unsure whether your current VA rating matches your conditions or what steps to consider next,
-        I offer a $300 Hybrid VA Claim Review & Strategy Session.
-    </p>
-    <a href="https://buy.stripe.com/dRm00iamk8qkeWb2R74Vy00"
-       style="display:inline-block;background:#2e8540;color:#fff;padding:12px 26px;border-radius:6px;
-              text-decoration:none;font-weight:bold;">
-        Request Consultation
-    </a>
-    <p style="font-size: 0.8rem; color:#777; margin-top:10px;">
-        After payment, email your receipt and preferred days/times to
-        <strong>contact@daxreciprocated.com</strong>. You choose what information or documents you are
-        comfortable sharing, and we will review them together for educational purposes only.
-    </p>
-</div>
-
-<script>
-// ==========================
-// VA CALCULATOR LOGIC (2026)
-// ==========================
-let items = [];
-let currentSelection = { name: null, type: null, value: null };
-
-// Simplified 2026 pay lookup for key dependency combos.[web:172][web:181][web:183]
-const payTable2026 = {
-    // Veteran alone
-    single: {
-        0: 0.00,
-        10: 180.42,
-        20: 356.66,
-        30: 552.47,
-        40: 795.84,
-        50: 1132.90,
-        60: 1435.02,
-        70: 1808.45,
-        80: 2102.15,
-        90: 2362.30,
-        100: 3938.58
-    },
-    // Veteran with spouse, no children, no parents (approx).
-    spouse: {
-        30: 621.47,
-        40: 887.84,
-        50: 1248.90,
-        60: 1566.02,
-        70: 1944.45,
-        80: 2261.15,
-        90: 2540.30,
-        100: 4187.99
-    },
-    // Veteran with one child only (no spouse/parents).[web:172]
-    single_child: {
-        30: 596.47,
-        40: 853.84,
-        50: 1205.90,
-        60: 1523.02,
-        70: 1910.45,
-        80: 2219.15,
-        90: 2494.30,
-        100: 4085.43
-    },
-    // Veteran with spouse + one child (no parents).[web:172][web:183]
-    spouse_child: {
-        30: 666.47,
-        40: 947.84,
-        50: 1322.90,
-        60: 1663.02,
-        70: 2074.45,
-        80: 2406.15,
-        90: 2704.30,
-        100: 4318.99
-    }
-};
-
-// BODY PART SELECTION
-function setPart(name, type, btn) {
-    currentSelection.name = name;
-    currentSelection.type = type;
-    document.querySelectorAll('.btn-body').forEach(b => b.classList.remove('selected'));
-    btn.classList.add('selected');
-    checkAddButton();
+.list-container{
+    background:var(--surface-2);
+    border-radius:12px;
+    border:1px solid #ece6dc;
+    margin-bottom:20px;
+    overflow:hidden;
+    display:none;
 }
-
-// PERCENT SELECTION
-function setPercent(val, btn) {
-    currentSelection.value = val;
-    document.querySelectorAll('.btn-percent').forEach(b => b.classList.remove('selected'));
-    btn.classList.add('selected');
-    checkAddButton();
+.list-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    padding:12px 15px;
+    border-bottom:1px solid #e8e1d5;
+    font-size:.95rem;
 }
-
-function checkAddButton() {
-    const addBtn = document.getElementById('addBtn');
-    const ready = currentSelection.name && currentSelection.value !== null;
-    if (ready) {
-        addBtn.classList.add('active');
-    } else {
-        addBtn.classList.remove('active');
-    }
+.list-item:last-child{border-bottom:none}
+.delete-btn{
+    color:#b42318;
+    cursor:pointer;
+    font-weight:800;
+    padding-left:10px;
 }
-
-// ADD ITEM
-function addItem() {
-    if (!currentSelection.name || currentSelection.value === null) return;
-    items.push({ ...currentSelection });
-    currentSelection = { name: null, type: null, value: null };
-    document.querySelectorAll('.btn-body, .btn-percent').forEach(b => b.classList.remove('selected'));
-    document.getElementById('addBtn').classList.remove('active');
-    renderList();
-    calculate();
+.settings{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:14px;
+    padding-top:14px;
+    border-top:1px solid #ece6dc;
+    margin-bottom:18px;
 }
-
-// RENDER LIST
-function renderList() {
-    const container = document.getElementById('listContainer');
-    container.innerHTML = '';
-    if (!items.length) {
-        container.style.display = 'none';
-        return;
-    }
-    container.style.display = 'block';
-    items.forEach((item, idx) => {
-        const div = document.createElement('div');
-        div.className = 'list-item';
-        div.innerHTML = `
-            <span>${item.name} - ${item.value}%</span>
-            <span class="delete-btn" onclick="deleteItem(${idx})">×</span>
-        `;
-        container.appendChild(div);
-    });
+label{
+    display:block;
+    font-size:.88rem;
+    margin-bottom:6px;
+    color:var(--muted);
+    font-weight:700;
 }
-
-function deleteItem(idx) {
-    items.splice(idx, 1);
-    renderList();
-    calculate();
+select,input{
+    width:100%;
+    padding:11px 12px;
+    border:1px solid #d3d7de;
+    border-radius:8px;
+    font-size:.95rem;
+    background:#fff;
 }
-
-// VA COMBINED RATING MATH + BILATERAL.[web:170][web:171][web:180][web:182]
-function vaCombine(ratings) {
-    if (!ratings.length) return 0;
-    const sorted = ratings.slice().sort((a, b) => b - a);
-    let efficiency = 100;
-    sorted.forEach(r => {
-        efficiency = efficiency * (1 - r / 100);
-    });
-    const rawDisabled = 100 - efficiency;
-    return rawDisabled;
+.disclaimer{
+    font-size:.76rem;
+    color:#6b7280;
+    margin-top:20px;
+    line-height:1.5;
+    border-top:1px solid #e9e3d8;
+    padding-top:14px;
 }
-
-function roundToNearest10(val) {
-    return Math.round(val / 10) * 10;
-}
-
-// Separate ratings into bilateral vs other and apply bilateral factor.
-function applyBilateralFactor() {
-    const bilateralBox = document.getElementById('bilateralBox');
-    const mathDiv = document.getElementById('bilateralMath');
-
-    // Arms/legs for bilateral purposes
-    const bilateralItems = items.filter(i =>
-        i.name === 'Left Arm' ||
-        i.name === 'Right Arm' ||
-        i.name === 'Left Leg' ||
-        i.name === 'Right Leg'
-    ).map(i => i.value).filter(v => v > 0);
-
-    const otherItems = items.filter(i =>
-        i.name === 'Other / Systemic'
-    ).map(i => i.value).filter(v => v > 0);
-
-    // Only apply bilateral if there are at least 2 qualifying ratings.[web:171][web:185]
-    if (bilateralItems.length < 2) {
-        bilateralBox.style.display = 'none';
-        mathDiv.innerHTML = '';
-        return {
-            combinedWithBilateral: vaCombine(bilateralItems.concat(otherItems)),
-            rawBilateralOnly: null
-        };
-    }
-
-    // Step 1: combine bilateral items.
-    const bilateralRaw = vaCombine(bilateralItems);
-    // Step 2: add 10% of that combined value.
-    const bilateralWithFactor = bilateralRaw + (0.10 * bilateralRaw);
-    // Step 3: round bilateral result to one decimal for display.
-    const bilateralDisplay = bilateralWithFactor.toFixed(1);
-
-    // Step 4: combine this bilateral block with the "other" ratings.
-    const combined = vaCombine([bilateralWithFactor, ...otherItems]);
-
-    // Show math steps for educational purposes.
-    bilateralBox.style.display = 'block';
-    mathDiv.innerHTML = '';
-    mathDiv.innerHTML += `<div class="math-step">Bilateral-eligible ratings combined: ${bilateralRaw.toFixed(1)}%</div>`;
-    mathDiv.innerHTML += `<div class="math-step">+ 10% of ${bilateralRaw.toFixed(1)}% = ${(0.10 * bilateralRaw).toFixed(1)}%</div>`;
-    mathDiv.innerHTML += `<div class="math-step">Bilateral block total: ${bilateralDisplay}% (before combining with other ratings)</div>`;
-
-    return {
-        combinedWithBilateral: combined,
-        rawBilateralOnly: bilateralWithFactor
-    };
-}
-
-// Determine dependency key and pick best‑fit pay table entry.
-function getDependencyKeyAndInfo(roundedRating) {
-    const status = document.getElementById('status').value;
-    const childrenUnder18 = parseInt(document.getElementById('childrenUnder18').value, 10) || 0;
-    const children18to24 = parseInt(document.getElementById('children18to24').value, 10) || 0;
-    const parents = parseInt(document.getElementById('parents').value, 10) || 0;
-
-    const totalKids = Math.min(childrenUnder18 + children18to24, 4); // cap at 4
-    const cappedParents = Math.min(parents, 2);
-
-    // Simple mapping for a few common scenarios; everything else is labeled approximate.[web:172][web:181]
-    let key = 'single';
-    let description = 'Veteran alone';
-
-    if (status === 'single') {
-        if (totalKids === 0) {
-            key = 'single';
-            description = 'Veteran alone';
-        } else if (totalKids === 1 && cappedParents === 0) {
-            key = 'single_child';
-            description = 'Veteran with 1 child';
-        } else {
-            key = 'single_child';
-            description = `Veteran with children / parents (approximate)`;
-        }
-    } else if (status === 'spouse') {
-        if (totalKids === 0 && cappedParents === 0) {
-            key = 'spouse';
-            description = 'Veteran with spouse';
-        } else if (totalKids === 1 && cappedParents === 0) {
-            key = 'spouse_child';
-            description = 'Veteran with spouse and 1 child';
-        } else {
-            key = 'spouse_child';
-            description = 'Veteran with spouse, children and/or parents (approximate)';
-        }
-    }
-
-    const table = payTable2026[key] || payTable2026.single;
-    const pay = table[roundedRating];
-
-    return { pay, description };
-}
-
-// MAIN CALC
-function calculate() {
-    const { combinedWithBilateral } = applyBilateralFactor();
-
-    const raw = combinedWithBilateral || 0;
-    const rounded = roundToNearest10(raw);
-    const rawDisplay = raw.toFixed(1);
-
-    const depInfo = getDependencyKeyAndInfo(rounded);
-    const payVal = depInfo.pay || 0;
-    const payText = payVal ? `$${payVal.toFixed(2)} / mo (${depInfo.description})` : `$0.00 / mo (${depInfo.description})`;
-
-    document.getElementById('rawRating').innerText = `Exact Raw Score: ${rawDisplay}%`;
-    document.getElementById('finalRating').innerText = `${rounded}%`;
-    document.getElementById('monthlyPay').innerText = payText;
-}
-</script>
-
-</body>
-</html>
+.cta{
+    max-width:760px;
+    margin:22px auto 0;
+    text-align:center;
+    background:#fff;
+    border:1px solid rgba(0,0,0,.05);
+    bo
