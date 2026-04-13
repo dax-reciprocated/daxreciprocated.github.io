@@ -3,231 +3,711 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>DAX Reciprocated | VA Decision Clarity for Veterans</title>
-
+<title>DAX Reciprocated | Help for Veterans Denied, Underrated, or Confused by the VA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
+:root {
+    --bg: #08111d;
+    --bg-soft: #101a2b;
+    --panel: rgba(255,255,255,0.08);
+    --panel-2: rgba(255,255,255,0.06);
+    --text: #f8fafc;
+    --muted: #cbd5e1;
+    --muted-2: #94a3b8;
+    --dark: #172033;
+    --white: #ffffff;
+    --primary: #c7363c;
+    --primary-hover: #aa252b;
+    --gold: #d8b45a;
+    --line: rgba(255,255,255,0.12);
+    --radius: 20px;
+    --shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+    --max: 1120px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
-    font-family: Inter, Arial, sans-serif;
-    background: #08111d;
-    color: #f8fafc;
+    font-family: "Inter", Arial, sans-serif;
+    color: var(--text);
+    background:
+        linear-gradient(rgba(6, 11, 19, 0.90), rgba(6, 11, 19, 0.94)),
+        url('IMG_1109.png') center/cover no-repeat fixed;
     line-height: 1.6;
 }
 
-.container { width: min(92%, 1100px); margin: auto; }
-
-.section { padding: 40px 0; }
-
-.panel {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 18px;
-    padding: 30px;
+a {
+    color: inherit;
 }
 
-h1, h2 { font-family: "Libre Baskerville", serif; }
+.container {
+    width: min(92%, var(--max));
+    margin: 0 auto;
+}
 
-a { color: inherit; text-decoration: none; }
+.hero {
+    padding: 42px 0 72px;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 42px;
+}
+
+.brand {
+    font-size: 0.95rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.topbar-note {
+    color: var(--muted);
+    font-size: 0.95rem;
+    text-align: right;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 30px;
+    align-items: center;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: rgba(216, 180, 90, 0.14);
+    color: #f4d88e;
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+}
+
+h1 {
+    margin: 0 0 18px;
+    font-family: "Libre Baskerville", serif;
+    font-size: clamp(2.5rem, 5vw, 4.8rem);
+    line-height: 1.06;
+    letter-spacing: -0.03em;
+}
+
+.hero p {
+    margin: 0 0 16px;
+    max-width: 700px;
+    color: var(--muted);
+    font-size: 1.08rem;
+}
+
+.cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 28px;
+}
 
 .btn {
-    display: inline-block;
-    padding: 12px 18px;
-    border-radius: 12px;
-    font-weight: 700;
-    margin-top: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 50px;
+    padding: 14px 24px;
+    border-radius: 14px;
+    text-decoration: none;
+    font-weight: 800;
+    transition: 0.2s ease;
 }
 
-.primary { background: #c7363c; }
-.secondary { border: 1px solid rgba(255,255,255,0.2); }
+.btn-primary {
+    background: var(--primary);
+    color: var(--white);
+    box-shadow: var(--shadow);
+}
 
-.grid { display: grid; gap: 16px; }
+.btn-primary:hover {
+    background: var(--primary-hover);
+    transform: translateY(-1px);
+}
 
-.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.btn-secondary {
+    background: transparent;
+    border: 1px solid var(--line);
+    color: var(--white);
+}
 
-@media(max-width:900px){ .grid-3 { grid-template-columns: 1fr; } }
+.btn-secondary:hover {
+    background: rgba(255,255,255,0.06);
+}
+
+.hero-card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 28px;
+    box-shadow: var(--shadow);
+}
+
+.hero-card h3 {
+    margin-top: 0;
+    margin-bottom: 16px;
+    font-size: 1.1rem;
+}
+
+.checklist {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 18px;
+}
+
+.checklist li {
+    margin-bottom: 12px;
+    color: var(--muted);
+    padding-left: 24px;
+    position: relative;
+}
+
+.checklist li::before {
+    content: "•";
+    position: absolute;
+    left: 6px;
+    color: var(--gold);
+    font-weight: bold;
+}
+
+.note {
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+    color: #eef2f7;
+    font-size: 0.95rem;
+}
+
+section {
+    padding: 28px 0;
+}
+
+.panel {
+    background: rgba(10,16,28,0.74);
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    padding: 42px;
+    box-shadow: var(--shadow);
+}
+
+.section-title {
+    max-width: 760px;
+    margin-bottom: 24px;
+}
+
+.section-title h2 {
+    margin: 0 0 10px;
+    font-family: "Libre Baskerville", serif;
+    font-size: clamp(1.9rem, 3vw, 3rem);
+    line-height: 1.15;
+}
+
+.section-title p {
+    margin: 0;
+    color: var(--muted);
+}
+
+.problem-grid,
+.faq-grid,
+.resource-grid {
+    display: grid;
+    gap: 18px;
+}
+
+.problem-grid {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.problem-card,
+.info-card,
+.faq-item {
+    background: var(--panel-2);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 22px;
+}
+
+.problem-card h3,
+.info-card h3,
+.faq-item h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.08rem;
+}
+
+.problem-card p,
+.info-card p,
+.faq-item p,
+.info-card li {
+    color: var(--muted);
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 24px;
+    align-items: start;
+}
+
+.offer-card {
+    background: #ffffff;
+    color: var(--dark);
+    border-radius: 22px;
+    padding: 30px;
+    box-shadow: var(--shadow);
+}
+
+.offer-tag {
+    display: inline-block;
+    margin-bottom: 14px;
+    padding: 7px 12px;
+    border-radius: 999px;
+    background: rgba(199, 54, 60, 0.10);
+    color: #9f1d22;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.offer-card h3 {
+    margin: 0 0 10px;
+    font-size: 1.3rem;
+}
+
+.offer-subtitle {
+    font-weight: 700;
+    color: #334155;
+    margin-bottom: 18px;
+}
+
+.offer-card ul {
+    padding-left: 18px;
+    margin-bottom: 18px;
+}
+
+.offer-card li {
+    margin-bottom: 10px;
+    color: #334155;
+}
+
+.offer-card p {
+    color: #334155;
+}
+
+.split-cards {
+    display: grid;
+    gap: 20px;
+}
+
+.quote-box {
+    background: #ffffff;
+    color: var(--dark);
+    border-radius: 22px;
+    padding: 28px;
+    box-shadow: var(--shadow);
+}
+
+.quote {
+    font-size: 1.08rem;
+    line-height: 1.7;
+    margin-bottom: 12px;
+}
+
+.quote-source {
+    color: #475569;
+    font-weight: 700;
+}
+
+.resource-link {
+    display: block;
+    text-decoration: none;
+    background: var(--panel-2);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 18px 20px;
+    font-weight: 700;
+}
+
+.resource-link:hover {
+    background: rgba(255,255,255,0.10);
+}
+
+.final-cta {
+    text-align: center;
+}
+
+.final-cta p {
+    max-width: 720px;
+    margin: 0 auto 18px;
+    color: var(--muted);
+}
+
+.disclaimer {
+    margin-top: 24px;
+    font-size: 0.92rem;
+    color: var(--muted);
+}
+
+footer {
+    padding: 18px 0 38px;
+}
+
+.footer-box {
+    border-top: 1px solid var(--line);
+    padding-top: 20px;
+    color: var(--muted);
+    font-size: 0.92rem;
+}
+
+.mobile-sticky {
+    display: none;
+}
+
+@media (max-width: 960px) {
+    .hero-grid,
+    .content-grid,
+    .problem-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .topbar-note {
+        text-align: left;
+    }
+}
+
+@media (max-width: 640px) {
+    .hero {
+        padding: 24px 0 62px;
+    }
+
+    .panel {
+        padding: 24px;
+        border-radius: 18px;
+    }
+
+    .hero-card,
+    .offer-card,
+    .quote-box,
+    .problem-card,
+    .info-card,
+    .faq-item {
+        padding: 20px;
+    }
+
+    .cta-row {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    .mobile-sticky {
+        display: block;
+        position: fixed;
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        z-index: 999;
+    }
+
+    .mobile-sticky a {
+        width: 100%;
+        border-radius: 14px;
+        text-align: center;
+    }
+
+    body {
+        padding-bottom: 84px;
+    }
+}
 </style>
 </head>
-
 <body>
 
-<!-- HERO -->
-<section class="section">
-<div class="container">
+<section class="hero">
+    <div class="container">
+        <div class="topbar">
+            <div class="brand">DAX Reciprocated</div>
+            <div class="topbar-note">Educational consulting for Veterans who were denied, underrated, or left confused by the VA</div>
+        </div>
 
-<h1>Denied, underrated, or confused by your VA decision?</h1>
+        <div class="hero-grid">
+            <div>
+                <div class="badge">Former Veterans Service Officer</div>
+                <h1>Denied, underrated, or confused by your VA decision?</h1>
+                <p>
+                    You are not the only one. Many Veterans leave the VA process frustrated, unsure what went wrong, and unclear about what to do next.
+                </p>
+                <p>
+                    DAX Reciprocated helps Veterans better understand VA decision letters, rating criteria, documentation issues, and practical next steps through clear educational strategy sessions built on real experience.
+                </p>
+                <p>
+                    No percentage of backpay. No vague answers. Just straightforward education designed to help you understand your situation before your next move.
+                </p>
 
-<p>
-Most Veterans are not denied because they don’t qualify — they are denied because their evidence and VA decision letter are misunderstood or misinterpreted.
-</p>
+                <div class="cta-row">
+                    <a href="https://book.stripe.com/dRm00iamk8qkeWb2R74Vy00" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                        Book Strategy Session
+                    </a>
+                    <a href="#free-resources" class="btn btn-secondary">
+                        See Free Resources
+                    </a>
+                </div>
+            </div>
 
-<p>
-DAX Reciprocated provides structured educational strategy sessions to help Veterans understand their VA decision letters, rating breakdowns, and documentation issues in a clear and practical way.
-</p>
-
-<p>
-No percentage of backpay. No representation. Just clarity before your next move.
-</p>
-
-<a class="btn primary" href="https://book.stripe.com/dRm00iamk8qkeWb2R74Vy00" target="_blank">
-Book Strategy Session
-</a>
-
-<a class="btn secondary" href="#resources">
-Free Resources
-</a>
-
-</div>
+            <div class="hero-card">
+                <h3>This session is for you if:</h3>
+                <ul class="checklist">
+                    <li>You were denied and do not fully understand why</li>
+                    <li>You believe your rating came in too low</li>
+                    <li>You received a VA decision letter that left you confused</li>
+                    <li>You are unsure what evidence or documentation matters most</li>
+                    <li>You want to understand your options before making your next move</li>
+                </ul>
+                <div class="note">
+                    Your strategy session fee is credited toward the extended flat-fee package if you decide to continue.
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
+<section>
+    <div class="container panel">
+        <div class="section-title">
+            <h2>What Veterans are dealing with</h2>
+            <p>
+    
+            </p>
+        </div>
 
-<!-- PROBLEMS -->
-<section class="section">
-<div class="container panel">
-
-<h2>What Veterans are dealing with</h2>
-
-<div class="grid grid-3">
-
-<div>
-<h3>Denied</h3>
-<p>You received a decision that doesn’t make sense or feels incomplete.</p>
-</div>
-
-<div>
-<h3>Underrated</h3>
-<p>Your rating does not reflect your actual condition severity.</p>
-</div>
-
-<div>
-<h3>Confused</h3>
-<p>Your decision letter is full of language that is difficult to interpret.</p>
-</div>
-
-</div>
-
-</div>
+        <div class="problem-grid">
+            <div class="problem-card">
+                <h3>Denied</h3>
+                <p>
+                    You submitted your claim, waited, and got a result that felt wrong or incomplete.
+                </p>
+            </div>
+            <div class="problem-card">
+                <h3>Underrated</h3>
+                <p>
+                    You got a rating, but it does not seem to reflect the severity of your conditions or limitations.
+                </p>
+            </div>
+            <div class="problem-card">
+                <h3>Confused</h3>
+                <p>
+                    You have paperwork, language, and decision letters in front of you, but no real clarity on what they mean.
+                </p>
+            </div>
+        </div>
+    </div>
 </section>
 
+<section>
+    <div class="container panel">
+        <div class="section-title">
+            <h2>Start with clarity</h2>
+            <p>   
+                
+            </p>
+        </div>
 
-<!-- OFFER -->
-<section class="section">
-<div class="container panel">
+        <div class="content-grid">
+            <div class="offer-card">
+                <span class="offer-tag">Primary Offer</span>
+                <h3>Educational Strategy Session</h3>
+                <div class="offer-subtitle">The clearest first step for most Veterans</div>
+                <ul>
+                    <li>Educational walkthrough of your VA decision letter and rating issues</li>
+                    <li>Explanation of how the VA evaluates evidence and applies rating criteria</li>
+                    <li>Discussion of the mistakes or gaps that may be hurting your case</li>
+                    <li>Practical education on next-step options before moving forward</li>
+                    <li>Written summary of the educational topics discussed</li>
+                </ul>
+                <p>
+                    This session is built to give you clarity fast. If you decide you want continued support afterward, your initial fee is credited toward the extended flat-fee package.
+                </p>
+                <a href="https://book.stripe.com/dRm00iamk8qkeWb2R74Vy00" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                    Book Strategy Session
+                </a>
+            </div>
 
-<h2>Educational Strategy Session</h2>
+            <div class="split-cards">
+                <div class="info-card">
+                    <h3>Why I built this</h3>
+                    <p>
+                        I joined the Army in March of 2006 and served for eight years. After dealing with my own long VA disability process, I learned how confusing the system can be and how costly mistakes in documentation and process can become.
+                    </p>
+                    <p>
+                        Later, I became a volunteer Veterans Service Officer and helped hundreds of Veterans better understand and prepare their claims.
+                    </p>
+                </div>
 
-<p>
-A structured session designed to help you understand your VA decision clearly before you take your next step.
-</p>
+                <div class="info-card">
+                    <h3>Why the flat-fee model matters</h3>
+                    <p>
+                        Many Veterans are already frustrated enough without worrying about someone taking a percentage of their backpay. DAX Reciprocated uses a flat-fee educational model instead.
+                    </p>
+                </div>
 
-<ul>
-<li>Breakdown of your VA decision letter</li>
-<li>Explanation of rating criteria and evidence review</li>
-<li>Identification of potential documentation gaps</li>
-<li>Clear explanation of next-step options</li>
-<li>Written summary of key points discussed</li>
-</ul>
-
-<a class="btn primary" href="https://book.stripe.com/dRm00iamk8qkeWb2R74Vy00" target="_blank">
-Book Strategy Session
-</a>
-
-<a class="btn secondary" href="https://book.stripe.com/cNifZg3XW21W6pF8br4Vy01" target="_blank">
-Extended Support
-</a>
-
-</div>
+                <div class="info-card">
+                    <h3>If you need more support</h3>
+                    <p>
+                        Extended flat-fee education and strategy support is available for Veterans who need more than one session.
+                    </p>
+                    <a href="https://book.stripe.com/cNifZg3XW21W6pF8br4Vy01" class="btn btn-secondary" target="_blank" rel="noopener noreferrer" style="margin-top:8px;">
+                        Book Extended Support
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
+<section>
+    <div class="container panel">
+        <div class="section-title">
+            <h2>Veteran feedback</h2>
+            <p>
+                
+            </p>
+        </div>
 
-<!-- ABOUT (YOUR BIO RESTORED) -->
-<section class="section">
-<div class="container panel">
-
-<h2>Why this exists</h2>
-
-<p>
-I joined the Army in March of 2006 and served for eight years. Like many Veterans, I went through my own long and frustrating VA disability process and learned firsthand how confusing the system can be.
-</p>
-
-<p>
-Later, I became a volunteer Veterans Service Officer and helped hundreds of Veterans better understand their claims, decision letters, and documentation challenges.
-</p>
-
-<p>
-DAX Reciprocated was created to provide educational clarity for Veterans who feel stuck, misled, or unsure about their VA decision.
-</p>
-
-</div>
+        <div class="quote-box">
+            <div class="quote">
+                “Roberto helped me understand my VA decision and clarified what steps I could take next.”
+            </div>
+            <div class="quote-source">— U.S. Army Veteran</div>
+        </div>
+    </div>
 </section>
 
+<section id="free-resources">
+    <div class="container panel">
+        <div class="section-title">
+            <h2>Free resources if you are not ready to book yet</h2>
+            <p>
+                
+            </p>
+        </div>
 
-<!-- RESOURCES -->
-<section class="section" id="resources">
-<div class="container panel">
-
-<h2>Free Resources</h2>
-
-<div class="grid">
-
-<a class="btn secondary" href="calculator.html" target="_blank">
-VA Disability Calculator
-</a>
-
-<a class="btn secondary" href="VA Benefits 4 Step Check List.pdf" target="_blank">
-VA Claim Checklist (PDF)
-</a>
-
-</div>
-
-</div>
+        <div class="resource-grid">
+            <a class="resource-link" href="calculator.html" target="_blank" rel="noopener noreferrer">
+                Open the VA Disability Rating Calculator
+            </a>
+            <a class="resource-link" href="VA Benefits 4 Step Check List.pdf" target="_blank" rel="noopener noreferrer">
+                Download the Free VA Claim Approval Checklist
+            </a>
+        </div>
+    </div>
 </section>
 
+<section>
+    <div class="container panel">
+        <div class="section-title">
+            <h2>Frequently asked questions</h2>
+            <p>
+                
+            </p>
+        </div>
 
-<!-- FAQ (RESTORED - IMPORTANT FOR TRUST + LEGAL SAFETY) -->
-<section class="section">
-<div class="container panel">
+        <div class="faq-grid">
+            <div class="faq-item">
+                <h3>Do I have to share documents to book?</h3>
+                <p>
+                    No. Sharing documents or information is voluntary. You decide what you want to discuss during the educational consultation.
+                </p>
+            </div>
 
-<h2>Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <h3>Do you take a percentage of my backpay?</h3>
+                <p>
+                    No. DAX Reciprocated uses a flat-fee educational model rather than a percentage-of-backpay model.
+                </p>
+            </div>
 
-<h3>Are you an attorney or claims agent?</h3>
-<p>No. This is educational consulting only. I do not provide legal representation or file VA claims on your behalf.</p>
+            <div class="faq-item">
+                <h3>Are you my attorney, claims agent, or accredited representative?</h3>
+                <p>
+                    No. This is educational consulting only. It does not include legal representation or filing claims on your behalf.
+                </p>
+            </div>
 
-<h3>Are you affiliated with the VA?</h3>
-<p>No. DAX Reciprocated is not affiliated with the U.S. Department of Veterans Affairs or any government agency.</p>
-
-<h3>Do you take a percentage of backpay?</h3>
-<p>No. All services are flat-fee based educational consulting.</p>
-
-<h3>What happens after a strategy session?</h3>
-<p>If additional support is needed, an extended flat-fee educational package is available.</p>
-
-</div>
+            <div class="faq-item">
+                <h3>What if I need more help after the first session?</h3>
+                <p>
+                    If you decide to continue, your initial strategy session fee is credited toward the extended flat-fee support package.
+                </p>
+            </div>
+        </div>
+    </div>
 </section>
 
+<section>
+    <div class="container panel final-cta">
+        <div class="section-title" style="margin-inline:auto;">
+            <h2>Book your strategy session</h2>
+            <p>
+                If you were denied, underrated, or left confused by the VA, this is the fastest way to get clear educational guidance on what may be going on and what to understand next.
+            </p>
+        </div>
 
-<!-- FINAL CTA -->
-<section class="section">
-<div class="container panel" style="text-align:center;">
+        <div class="cta-row" style="justify-content:center;">
+            <a href="https://book.stripe.com/dRm00iamk8qkeWb2R74Vy00" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                Book Strategy Session
+            </a>
+        </div>
 
-<h2>Ready to get clarity?</h2>
+        <p style="margin-top:20px;">
+            After booking, email your receipt to <strong>daxreciprocated@gmail.com</strong>
+        </p>
 
-<p>
-If you were denied, underrated, or left confused by your VA decision, the fastest way forward is understanding what actually happened.
-</p>
-
-<a class="btn primary" href="https://book.stripe.com/dRm00iamk8qkeWb2R74Vy00" target="_blank">
-Book Strategy Session
-</a>
-
-</div>
+        <p class="disclaimer">
+            DAX Reciprocated LLC provides educational consulting services only. I am a former Veterans Service Officer but I am not acting as an accredited representative, attorney, or claims agent. I do not prepare, submit, or represent veterans in VA claims or appeals. I am not affiliated with the U.S. Department of Veterans Affairs or any veterans service organization.
+        </p>
+    </div>
 </section>
 
-
-<footer style="text-align:center; padding:30px; color:#94a3b8;">
-© 2026 DAX Reciprocated LLC
+<footer>
+    <div class="container footer-box">
+        <p>© 2026 DAX Reciprocated LLC</p>
+    </div>
 </footer>
+
+<div class="mobile-sticky">
+    <a href="https://book.stripe.com/dRm00iamk8qkeWb2R74Vy00" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+        Book Strategy Session
+    </a>
+</div>
 
 </body>
 </html>
