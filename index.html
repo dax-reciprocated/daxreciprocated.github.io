@@ -2,917 +2,788 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#080a0c">
-  <meta name="description" content="The Exotic Veteran™ Field Manual by DAX Reciprocated LLC. Plain-English VA disability claims education, Claim Autopsy™ training and practical worksheets.">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="The Exotic Veteran™ Field Manual | Stop Guessing. Start Understanding.">
-  <meta property="og:description" content="Veteran-to-Veteran VA disability education. Learn the language of evidence, examinations and VA decision letters.">
-  <meta property="og:url" content="https://daxreciprocated.com/">
-
-  <title>The Exotic Veteran™ Field Manual | DAX Reciprocated</title>
-
-  <style>
-    :root {
-      color-scheme: dark;
-      --bg: #08090c;
-      --panel: #13171d;
-      --text: #f5f2e9;
-      --muted: #bbb8af;
-      --accent: #e6b966;
-      --line: #38342d;
-      --max: 1130px;
-    }
-
-    * { box-sizing: border-box; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-      line-height: 1.62;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background:
-        linear-gradient(92deg, rgba(8,9,12,.97), rgba(8,9,12,.90)),
-        url("IMG_1109.png") center / cover;
-      opacity: .46;
-      z-index: -1;
-    }
-
-    a { color: var(--accent); }
-
-    a:focus-visible {
-      outline: 3px solid #ffd98b;
-      outline-offset: 3px;
-    }
-
-    .wrap {
-      width: min(var(--max), calc(100% - 36px));
-      margin: auto;
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      min-height: 78px;
-      border-bottom: 1px solid #2b2b2c;
-    }
-
-    .brand {
-      font-weight: 900;
-      font-size: 1rem;
-      letter-spacing: .115em;
-      text-decoration: none;
-      color: white;
-      line-height: 1.3;
-    }
-
-    .brand small {
-      display: block;
-      font-weight: 600;
-      color: var(--accent);
-      font-size: .63rem;
-      letter-spacing: .22em;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 24px;
-      flex-wrap: wrap;
-    }
-
-    .nav-links a {
-      font-size: .89rem;
-      text-decoration: none;
-      color: #e6e2da;
-    }
-
-    .nav-links a:hover { text-decoration: underline; }
-
-    .hero {
-      display: grid;
-      grid-template-columns: 1.13fr .87fr;
-      gap: 42px;
-      align-items: center;
-      padding: 77px 0 73px;
-    }
-
-    .eyebrow {
-      letter-spacing: .2em;
-      font-size: .76rem;
-      font-weight: 800;
-      color: var(--accent);
-      text-transform: uppercase;
-    }
-
-    h1, h2, h3 {
-      line-height: 1.13;
-      letter-spacing: -.023em;
-      margin: 0 0 17px;
-    }
-
-    h1 {
-      font-size: clamp(2.6rem, 5.7vw, 5rem);
-      font-weight: 950;
-    }
-
-    h2 { font-size: clamp(1.9rem, 3.2vw, 2.95rem); }
-
-    h3 { font-size: 1.18rem; }
-
-    .hero h1 span { color: var(--accent); }
-
-    .subtitle {
-      font-size: clamp(1.05rem, 1.7vw, 1.28rem);
-      max-width: 670px;
-      color: #dad5c9;
-    }
-
-    .supporting {
-      color: var(--muted);
-      max-width: 630px;
-    }
-
-    .actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin: 27px 0 16px;
-    }
-
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      gap: 8px;
-      padding: 13px 20px;
-      min-height: 50px;
-      border-radius: 7px;
-      border: 1px solid var(--accent);
-      background: var(--accent);
-      color: #1a1307;
-      font-weight: 800;
-      text-decoration: none;
-      transition: transform .16s, background .16s;
-    }
-
-    .button:hover {
-      transform: translateY(-2px);
-      background: #f5ca7a;
-      color: #15100a;
-    }
-
-    .button.secondary {
-      background: transparent;
-      color: var(--accent);
-    }
-
-    .button.secondary:hover { background: #241e13; }
-
-    .note {
-      font-size: .83rem;
-      color: var(--muted);
-    }
-
-    .book-scene {
-      display: flex;
-      justify-content: center;
-      padding: 10px 12px 25px;
-      perspective: 1200px;
-    }
-
-    .book {
-      width: min(360px, 100%);
-      min-height: 474px;
-      box-shadow:
-        18px 20px 0 #1b2026,
-        30px 35px 50px #0008;
-      transform: rotate(-4deg) rotateY(-9deg);
-      background: linear-gradient(130deg, #1f2429, #090b0e 48%, #29251a);
-      border: 2px solid #725a36;
-      border-left: 12px solid #a98141;
-      padding: 32px 26px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .book .series {
-      font-size: .79rem;
-      letter-spacing: .16em;
-      color: #e8c786;
-      font-weight: 800;
-    }
-
-    .book .large {
-      font-size: clamp(2rem, 4vw, 2.8rem);
-      line-height: 1.04;
-      font-weight: 950;
-      text-transform: uppercase;
-      letter-spacing: -.04em;
-    }
-
-    .book .large em {
-      color: var(--accent);
-      font-style: normal;
-    }
-
-    .book .tiny {
-      font-size: .83rem;
-      color: #cbc5b5;
-    }
-
-    .seal {
-      display: inline-block;
-      border: 2px solid var(--accent);
-      color: var(--accent);
-      padding: 5px 9px;
-      font-size: .65rem;
-      font-weight: 900;
-      letter-spacing: .12em;
-      max-width: fit-content;
-    }
-
-    section {
-      padding: 72px 0;
-      border-top: 1px solid #2b2b2c;
-    }
-
-    .section-lead {
-      max-width: 710px;
-      color: var(--muted);
-      font-size: 1.04rem;
-      margin: 0 0 30px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 17px;
-    }
-
-    .card {
-      background: linear-gradient(160deg, #1a1c20, #101215);
-      border: 1px solid #38332b;
-      padding: 26px;
-      border-radius: 12px;
-    }
-
-    .card .n {
-      color: var(--accent);
-      font-size: .75rem;
-      letter-spacing: .14em;
-      font-weight: 900;
-      margin-bottom: 13px;
-    }
-
-    .card p {
-      color: var(--muted);
-      margin: 0;
-    }
-
-    .feature {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 38px;
-      align-items: center;
-    }
-
-    .panel {
-      padding: 30px;
-      border-radius: 12px;
-      background: var(--panel);
-      border: 1px solid var(--line);
-    }
-
-    ul { padding-left: 22px; }
-    li { margin: 7px 0; }
-
-    .method {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-    }
-
-    .method div {
-      padding: 18px;
-      background: #18191a;
-      border: 1px solid #463d2d;
-      border-radius: 8px;
-    }
-
-    .method strong {
-      display: block;
-      color: var(--accent);
-      letter-spacing: .05em;
-    }
-
-    .method span {
-      font-size: .86rem;
-      color: #d0c9ba;
-    }
-
-    .faq details {
-      margin: 12px 0;
-      border: 1px solid #39352d;
-      border-radius: 9px;
-      padding: 16px 20px;
-      background: #151719;
-    }
-
-    .faq summary {
-      cursor: pointer;
-      font-weight: 800;
-    }
-
-    .faq p {
-      color: var(--muted);
-      margin: 12px 0 0;
-    }
-
-    .price {
-      font-size: 3.1rem;
-      font-weight: 950;
-      line-height: 1.1;
-      color: var(--accent);
-    }
-
-    .buy-panel {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 30px;
-      align-items: center;
-    }
-
-    .buy-panel p {
-      max-width: 660px;
-      color: var(--muted);
-    }
-
-    footer {
-      border-top: 1px solid #3b362c;
-      padding: 34px 0 48px;
-      color: #b6b2a7;
-      font-size: .82rem;
-    }
-
-    .footer-cols {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 28px;
-    }
-
-    .small-caps {
-      letter-spacing: .12em;
-      font-size: .73rem;
-      font-weight: 800;
-      color: var(--accent);
-      text-transform: uppercase;
-    }
-
-    footer a { color: #edca89; }
-
-    @media (max-width: 830px) {
-      .hero, .feature, .buy-panel {
-        grid-template-columns: 1fr;
-      }
-
-      .hero { padding-top: 46px; }
-      .book-scene { order: -1; }
-      .book { min-height: 385px; width: 270px; }
-
-      .grid { grid-template-columns: 1fr 1fr; }
-      .method { grid-template-columns: 1fr 1fr; }
-
-      .nav {
-        align-items: flex-start;
-        padding: 17px 0;
-        flex-direction: column;
-        gap: 12px;
-      }
-
-      .nav-links { gap: 17px; }
-    }
-
-    @media (max-width: 540px) {
-      .grid, .footer-cols { grid-template-columns: 1fr; }
-      .hero { gap: 10px; }
-      .book-scene { display: none; }
-      section { padding: 55px 0; }
-      .panel { padding: 22px; }
-      .method div { padding: 13px; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      .button { transition: none; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080a0c">
+<meta name="description" content="The Exotic Veteran™ Field Manual by DAX Reciprocated LLC. Plain-English VA disability claims education, Claim Autopsy™ training and practical worksheets.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Exotic Veteran™ Field Manual | Stop Guessing. Start Understanding.">
+<meta property="og:description" content="Veteran-to-Veteran VA disability education. Learn the language of evidence, examinations and VA decision letters.">
+<meta property="og:url" content="https://daxreciprocated.com/">
+<title>The Exotic Veteran™ Field Manual | DAX Reciprocated</title>
+
+<style>
+:root {
+  color-scheme:dark;
+  --bg:#08090c;
+  --panel:#13171d;
+  --text:#f5f2e9;
+  --muted:#bbb8af;
+  --accent:#e6b966;
+  --line:#38342d;
+  --max:1130px;
+}
+* {box-sizing:border-box}
+html {scroll-behavior:smooth}
+body {
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  line-height:1.62;
+}
+body::before {
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(92deg,rgba(8,9,12,.97),rgba(8,9,12,.90)),
+    url("IMG_1109.png") center / cover;
+  opacity:.46;
+  z-index:-1;
+}
+a {color:var(--accent)}
+a:focus-visible {outline:3px solid #ffd98b;outline-offset:3px}
+.wrap {width:min(var(--max),calc(100% - 36px));margin:auto}
+.nav {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  min-height:78px;
+  border-bottom:1px solid #2b2b2c;
+}
+.brand {
+  font-weight:900;
+  font-size:1rem;
+  letter-spacing:.115em;
+  text-decoration:none;
+  color:white;
+  line-height:1.3;
+}
+.brand small {
+  display:block;
+  font-weight:600;
+  color:var(--accent);
+  font-size:.63rem;
+  letter-spacing:.22em;
+}
+.nav-links {display:flex;gap:24px;flex-wrap:wrap}
+.nav-links a {
+  font-size:.89rem;
+  text-decoration:none;
+  color:#e6e2da;
+}
+.nav-links a:hover {text-decoration:underline}
+.hero {
+  display:grid;
+  grid-template-columns:1.13fr .87fr;
+  gap:42px;
+  align-items:center;
+  padding:77px 0 73px;
+}
+.eyebrow {
+  letter-spacing:.2em;
+  font-size:.76rem;
+  font-weight:800;
+  color:var(--accent);
+  text-transform:uppercase;
+}
+h1,h2,h3 {
+  line-height:1.13;
+  letter-spacing:-.023em;
+  margin:0 0 17px;
+}
+h1 {font-size:clamp(2.6rem,5.7vw,5rem);font-weight:950}
+h2 {font-size:clamp(1.9rem,3.2vw,2.95rem)}
+h3 {font-size:1.18rem}
+.hero h1 span {color:var(--accent)}
+.subtitle {
+  font-size:clamp(1.05rem,1.7vw,1.28rem);
+  max-width:670px;
+  color:#dad5c9;
+}
+.supporting {color:var(--muted);max-width:630px}
+.actions {
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin:27px 0 16px;
+}
+.button {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  gap:8px;
+  padding:13px 20px;
+  min-height:50px;
+  border-radius:7px;
+  border:1px solid var(--accent);
+  background:var(--accent);
+  color:#1a1307;
+  font-weight:800;
+  text-decoration:none;
+  transition:transform .16s,background .16s;
+}
+.button:hover {
+  transform:translateY(-2px);
+  background:#f5ca7a;
+  color:#15100a;
+}
+.button.secondary {background:transparent;color:var(--accent)}
+.button.secondary:hover {background:#241e13}
+.note {font-size:.83rem;color:var(--muted)}
+.book-scene {
+  display:flex;
+  justify-content:center;
+  padding:10px 12px 25px;
+  perspective:1200px;
+}
+.book {
+  width:min(360px,100%);
+  min-height:474px;
+  box-shadow:18px 20px 0 #1b2026,30px 35px 50px #0008;
+  transform:rotate(-4deg) rotateY(-9deg);
+  background:linear-gradient(130deg,#1f2429,#090b0e 48%,#29251a);
+  border:2px solid #725a36;
+  border-left:12px solid #a98141;
+  padding:32px 26px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  position:relative;
+  overflow:hidden;
+}
+.book .series {
+  font-size:.79rem;
+  letter-spacing:.16em;
+  color:#e8c786;
+  font-weight:800;
+}
+.book .large {
+  font-size:clamp(2rem,4vw,2.8rem);
+  line-height:1.04;
+  font-weight:950;
+  text-transform:uppercase;
+  letter-spacing:-.04em;
+}
+.book .large em {color:var(--accent);font-style:normal}
+.book .tiny {font-size:.83rem;color:#cbc5b5}
+.seal {
+  display:inline-block;
+  border:2px solid var(--accent);
+  color:var(--accent);
+  padding:5px 9px;
+  font-size:.65rem;
+  font-weight:900;
+  letter-spacing:.12em;
+  max-width:fit-content;
+}
+section {padding:72px 0;border-top:1px solid #2b2b2c}
+.section-lead {
+  max-width:710px;
+  color:var(--muted);
+  font-size:1.04rem;
+  margin:0 0 30px;
+}
+.grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:17px;
+}
+.card {
+  background:linear-gradient(160deg,#1a1c20,#101215);
+  border:1px solid #38332b;
+  padding:26px;
+  border-radius:12px;
+}
+.card .n {
+  color:var(--accent);
+  font-size:.75rem;
+  letter-spacing:.14em;
+  font-weight:900;
+  margin-bottom:13px;
+}
+.card p {color:var(--muted);margin:0}
+.feature {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:38px;
+  align-items:center;
+}
+.panel {
+  padding:30px;
+  border-radius:12px;
+  background:var(--panel);
+  border:1px solid var(--line);
+}
+ul {padding-left:22px}
+li {margin:7px 0}
+.method {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+}
+.method div {
+  padding:18px;
+  background:#18191a;
+  border:1px solid #463d2d;
+  border-radius:8px;
+}
+.method strong {
+  display:block;
+  color:var(--accent);
+  letter-spacing:.05em;
+}
+.method span {font-size:.86rem;color:#d0c9ba}
+.faq details {
+  margin:12px 0;
+  border:1px solid #39352d;
+  border-radius:9px;
+  padding:16px 20px;
+  background:#151719;
+}
+.faq summary {cursor:pointer;font-weight:800}
+.faq p {color:var(--muted);margin:12px 0 0}
+.price {
+  font-size:3.1rem;
+  font-weight:950;
+  line-height:1.1;
+  color:var(--accent);
+}
+.buy-panel {
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:30px;
+  align-items:center;
+}
+.buy-panel p {max-width:660px;color:var(--muted)}
+footer {
+  border-top:1px solid #3b362c;
+  padding:34px 0 48px;
+  color:#b6b2a7;
+  font-size:.82rem;
+}
+.footer-cols {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:28px;
+}
+.small-caps {
+  letter-spacing:.12em;
+  font-size:.73rem;
+  font-weight:800;
+  color:var(--accent);
+  text-transform:uppercase;
+}
+footer a {color:#edca89}
+@media(max-width:830px) {
+  .hero,.feature,.buy-panel {grid-template-columns:1fr}
+  .hero {padding-top:46px}
+  .book-scene {order:-1}
+  .book {min-height:385px;width:270px}
+  .grid {grid-template-columns:1fr 1fr}
+  .method {grid-template-columns:1fr 1fr}
+  .nav {
+    align-items:flex-start;
+    padding:17px 0;
+    flex-direction:column;
+    gap:12px;
+  }
+  .nav-links {gap:17px}
+}
+@media(max-width:540px) {
+  .grid,.footer-cols {grid-template-columns:1fr}
+  .hero {gap:10px}
+  .book-scene {display:none}
+  section {padding:55px 0}
+  .panel {padding:22px}
+  .method div {padding:13px}
+}
+@media(prefers-reduced-motion:reduce) {
+  html {scroll-behavior:auto}
+  .button {transition:none}
+}
+</style>
 </head>
 
 <body>
+<header class="wrap nav">
+  <a class="brand" href="#top">
+    DAX RECIPROCATED
+    <small>THE EXOTIC VETERAN™</small>
+  </a>
 
-  <header class="wrap nav">
-    <a class="brand" href="#top">
-      DAX RECIPROCATED
-      <small>THE EXOTIC VETERAN™</small>
+  <nav class="nav-links" aria-label="Main navigation">
+    <a href="#inside">The Book</a>
+    <a href="#resources">Free Resources</a>
+    <a href="https://www.facebook.com/share/g/18bo1Lu1gm/"
+       target="_blank" rel="noopener noreferrer">
+      Veteran Community
     </a>
+    <a href="#about">About</a>
+    <a href="#faq">Questions</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
 
-    <nav class="nav-links" aria-label="Main navigation">
-      <a href="#inside">The Book</a>
-      <a href="#resources">Free Resources</a>
-      <a href="#about">About</a>
-      <a href="#faq">Questions</a>
-    </nav>
-  </header>
+<main id="top">
 
-  <main id="top">
+  <!-- HERO -->
+  <div class="wrap hero">
+    <div>
+      <p class="eyebrow" id="launch-status">
+        Available Now • Digital Edition
+      </p>
 
-    <!-- HERO SECTION -->
-    <div class="wrap hero">
+      <h1>
+        STOP GUESSING.<br>
+        <span>START UNDERSTANDING.</span>
+      </h1>
+
+      <p class="subtitle">
+        The Quit Fuckin' Around Method™ — an Exotic Veteran™
+        Field Manual for understanding VA disability claims
+        in plain English.
+      </p>
+
+      <p class="supporting">
+        Evidence. C&P examinations. VA decision letters.
+        The Claim Autopsy™. The questions nobody explained
+        when you took the uniform off. Written by a Veteran
+        and former Veterans Service Officer.
+      </p>
+
+      <div class="actions">
+        <a class="button" id="primary-buy" data-buy
+           href="https://payhip.com/b/vZP72">
+          Get the Field Manual — $49
+        </a>
+
+        <a class="button secondary" href="#resources">
+          Free Veteran Resources
+        </a>
+      </div>
+
+      <p class="note" id="availability-note">
+        $49 one-time digital purchase • Secure Payhip checkout
+        and automatic PDF delivery.
+      </p>
+    </div>
+
+    <!-- BOOK COVER CONCEPT -->
+    <div class="book-scene"
+         aria-label="Illustrated Field Manual cover concept">
+      <div class="book">
+        <div>
+          <div class="series">THE EXOTIC VETERAN™</div>
+          <div class="seal" style="margin-top:16px">
+            FIELD MANUAL
+          </div>
+        </div>
+
+        <div class="large">
+          THE QUIT<br>
+          <em>FUCKIN'</em><br>
+          AROUND<br>
+          METHOD™
+        </div>
+
+        <div>
+          <p class="tiny">
+            STOP GUESSING.<br>
+            START UNDERSTANDING.
+          </p>
+          <p class="tiny" style="margin-bottom:0">
+            DAX RECIPROCATED LLC
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOOK FEATURES -->
+  <section id="inside">
+    <div class="wrap">
+      <p class="eyebrow">What you're getting</p>
+      <h2>Not another wall of VA jargon.</h2>
+
+      <p class="section-lead">
+        This Field Manual is built to make complex concepts
+        understandable and give you tools for organizing your
+        own thinking. It doesn't promise approvals, percentages,
+        or outcomes.
+      </p>
+
+      <div class="grid">
+        <div class="card">
+          <div class="n">01 / THE FOUNDATION</div>
+          <h3>Understand the evidence</h3>
+          <p>
+            Learn how conditions, severity, service connection
+            and supporting records fit together.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="n">02 / C&P EXAMS</div>
+          <h3>Know the purpose of the questions</h3>
+          <p>
+            Plain-English explanations of common examination
+            categories and truthful preparation.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="n">03 / CLAIM AUTOPSY™</div>
+          <h3>Learn to read the decision</h3>
+          <p>
+            Follow a fictional training case to identify what
+            VA considered, decided and explained.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="n">04 / THE PAPER TRAIL</div>
+          <h3>Understand the Code Sheet</h3>
+          <p>
+            Understand the kinds of rating information it may
+            contain and why organized records matter.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="n">05 / HONDO CLUB</div>
+          <h3>Understand the award</h3>
+          <p>
+            Learn why compensation at the 100% rate and
+            Permanent & Total status aren't interchangeable.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="n">06 / FIELD TOOLS</div>
+          <h3>Put the lessons to work</h3>
+          <p>
+            Evidence Map, Claim Autopsy™ worksheet,
+            C&P preparation page and records checklists.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOUR-STEP METHOD -->
+  <section>
+    <div class="wrap feature">
       <div>
-        <p class="eyebrow" id="launch-status">
-          Digital Edition • Coming Soon
+        <p class="eyebrow">The method</p>
+        <h2>Facts first. Then understanding.</h2>
+
+        <p class="section-lead">
+          The four-step method is an educational way to make
+          sense of the evidence. It isn't a VA-required filing
+          sequence or a substitute for advice from an
+          accredited representative.
         </p>
+      </div>
 
-        <h1>
-          STOP GUESSING.<br>
-          <span>START UNDERSTANDING.</span>
-        </h1>
+      <div class="method">
+        <div>
+          <strong>01 IDENTIFY IT</strong>
+          <span>What condition is involved?</span>
+        </div>
 
-        <p class="subtitle">
-          The Quit Fuckin' Around Method™ — an Exotic Veteran™
-          Field Manual for understanding VA disability claims
-          in plain English.
-        </p>
+        <div>
+          <strong>02 PROVE IT</strong>
+          <span>What documents its effects?</span>
+        </div>
 
-        <p class="supporting">
-          Evidence. C&P examinations. VA decision letters.
-          The Claim Autopsy™. The questions nobody explained
-          when you took the uniform off. Written by a Veteran
-          and former Veterans Service Officer.
+        <div>
+          <strong>03 CONNECT IT</strong>
+          <span>
+            What supports the relationship to service,
+            when applicable?
+          </span>
+        </div>
+
+        <div>
+          <strong>04 EXPLAIN IT</strong>
+          <span>Can you understand what the evidence says?</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FREE RESOURCES -->
+  <section id="resources">
+    <div class="wrap feature">
+      <div>
+        <p class="eyebrow">Free Veteran resources</p>
+        <h2>Useful stuff. No consultation required.</h2>
+
+        <p class="section-lead">
+          Use the free VA disability calculator, download the
+          educational checklist, or join our Veteran community
+          for general benefits education and peer discussion.
+          Verify current benefit rules with VA.
         </p>
 
         <div class="actions">
-          <a class="button" id="primary-buy" data-buy href="#inside">
-            See What's Inside
+          <a class="button secondary" href="calculator.html">
+            Open VA Rating Calculator
           </a>
 
-          <a class="button secondary" href="#resources">
-            Free Veteran Resources
+          <a class="button secondary"
+             href="VA%20Benefits%204%20Step%20Check%20List.pdf">
+            Download Free Checklist
+          </a>
+
+          <a class="button secondary"
+             href="https://www.facebook.com/share/g/18bo1Lu1gm/"
+             target="_blank" rel="noopener noreferrer">
+            Join Our Free Veteran Community
           </a>
         </div>
 
-        <p class="note" id="availability-note">
-          $49 planned digital launch price • Secure checkout
-          will activate once the finished edition is ready.
+        <p class="note">
+          Our Facebook group is for general education and peer
+          support. Please do not post medical records, claim
+          files, Social Security numbers, or other sensitive
+          personal information.
         </p>
       </div>
 
-      <!-- ILLUSTRATED BOOK COVER -->
-      <div class="book-scene" aria-label="Illustrated Field Manual cover concept">
-        <div class="book">
-          <div>
-            <div class="series">THE EXOTIC VETERAN™</div>
-            <div class="seal" style="margin-top:16px">
-              FIELD MANUAL
-            </div>
-          </div>
+      <div class="panel">
+        <p class="small-caps">
+          Need help with your individual claim?
+        </p>
 
-          <div class="large">
-            THE QUIT<br>
-            <em>FUCKIN'</em><br>
-            AROUND<br>
-            METHOD™
-          </div>
+        <h3>Find an accredited representative.</h3>
 
-          <div>
-            <p class="tiny">
-              STOP GUESSING.<br>
-              START UNDERSTANDING.
-            </p>
+        <p>
+          We don't review individual claims, prepare submissions
+          or represent claimants. VA-accredited Veterans Service
+          Organization representatives can assist with claims
+          at no charge.
+        </p>
 
-            <p class="tiny" style="margin-bottom:0">
-              DAX RECIPROCATED LLC
-            </p>
-          </div>
-        </div>
+        <a href="https://www.va.gov/get-help-from-accredited-representative/"
+           target="_blank" rel="noopener noreferrer">
+          Find a VA-accredited representative
+        </a>
       </div>
     </div>
+  </section>
 
-    <!-- BOOK FEATURES -->
-    <section id="inside">
-      <div class="wrap">
-        <p class="eyebrow">What you're getting</p>
-
-        <h2>Not another wall of VA jargon.</h2>
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap feature">
+      <div>
+        <p class="eyebrow">About the publisher</p>
+        <h2>Veteran-to-Veteran education.</h2>
 
         <p class="section-lead">
-          This Field Manual is built to make complex concepts
-          understandable and give you tools for organizing your
-          own thinking. It doesn't promise approvals, percentages,
-          or outcomes.
+          DAX Reciprocated LLC publishes educational material
+          under The Exotic Veteran™ brand. The author served
+          in the U.S. Army and later worked as a Veterans
+          Service Officer.
+
+          The goal: help Veterans understand the language and
+          purpose of VA claims paperwork—without pretending
+          every claim has the same answer.
         </p>
-
-        <div class="grid">
-
-          <div class="card">
-            <div class="n">01 / THE FOUNDATION</div>
-            <h3>Understand the evidence</h3>
-            <p>
-              Learn how conditions, severity, service connection
-              and supporting records fit together.
-            </p>
-          </div>
-
-          <div class="card">
-            <div class="n">02 / C&P EXAMS</div>
-            <h3>Know the purpose of the questions</h3>
-            <p>
-              Plain-English explanations of common examination
-              categories and truthful preparation.
-            </p>
-          </div>
-
-          <div class="card">
-            <div class="n">03 / CLAIM AUTOPSY™</div>
-            <h3>Learn to read the decision</h3>
-            <p>
-              Follow a fictional training case to identify what
-              VA considered, decided and explained.
-            </p>
-          </div>
-
-          <div class="card">
-            <div class="n">04 / THE PAPER TRAIL</div>
-            <h3>Understand the Code Sheet</h3>
-            <p>
-              Understand the kinds of rating information it may
-              contain and why organized records matter.
-            </p>
-          </div>
-
-          <div class="card">
-            <div class="n">05 / HONDO CLUB</div>
-            <h3>Understand the award</h3>
-            <p>
-              Learn why compensation at the 100% rate and
-              Permanent & Total status aren't interchangeable.
-            </p>
-          </div>
-
-          <div class="card">
-            <div class="n">06 / FIELD TOOLS</div>
-            <h3>Put the lessons to work</h3>
-            <p>
-              Evidence Map, Claim Autopsy™ worksheet,
-              C&P preparation page and records checklists.
-            </p>
-          </div>
-
-        </div>
       </div>
-    </section>
 
-    <!-- FOUR-STEP METHOD -->
-    <section>
-      <div class="wrap feature">
-
-        <div>
-          <p class="eyebrow">The method</p>
-
-          <h2>Facts first. Then understanding.</h2>
-
-          <p class="section-lead">
-            The four-step method is an educational way to make
-            sense of the evidence. It isn't a VA-required filing
-            sequence or a substitute for advice from an
-            accredited representative.
-          </p>
-        </div>
-
-        <div class="method">
-          <div>
-            <strong>01 IDENTIFY IT</strong>
-            <span>What condition is involved?</span>
-          </div>
-
-          <div>
-            <strong>02 PROVE IT</strong>
-            <span>What documents its effects?</span>
-          </div>
-
-          <div>
-            <strong>03 CONNECT IT</strong>
-            <span>What supports the relationship to service,
-            when applicable?</span>
-          </div>
-
-          <div>
-            <strong>04 EXPLAIN IT</strong>
-            <span>Can you understand what the evidence says?</span>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- FREE RESOURCES -->
-    <section id="resources">
-      <div class="wrap feature">
-
-        <div>
-          <p class="eyebrow">Free Veteran resources</p>
-
-          <h2>Useful stuff. No consultation required.</h2>
-
-          <p class="section-lead">
-            The free VA disability rating calculator and
-            educational checklist remain available. Use them
-            as starting points, and verify current benefit
-            rules with VA.
-          </p>
-
-          <div class="actions">
-            <a class="button secondary" href="calculator.html">
-              Open VA Rating Calculator
-            </a>
-
-            <a class="button secondary"
-               href="VA%20Benefits%204%20Step%20Check%20List.pdf">
-              Download Free Checklist
-            </a>
-          </div>
-        </div>
-
-        <div class="panel">
-          <p class="small-caps">
-            Need help with your individual claim?
-          </p>
-
-          <h3>Find an accredited representative.</h3>
-
-          <p>
-            We don't review individual claims, prepare submissions
-            or represent claimants. VA-accredited Veterans Service
-            Organization representatives can assist with claims
-            at no charge.
-          </p>
-
-          <a href="https://www.va.gov/get-help-from-accredited-representative/"
-             target="_blank"
-             rel="noopener noreferrer">
-            Find a VA-accredited representative
-          </a>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ABOUT THE PUBLISHER -->
-    <section id="about">
-      <div class="wrap feature">
-
-        <div>
-          <p class="eyebrow">About the publisher</p>
-
-          <h2>Veteran-to-Veteran education.</h2>
-
-          <p class="section-lead">
-            DAX Reciprocated LLC publishes educational material
-            under The Exotic Veteran™ brand. The author served
-            in the U.S. Army and later worked as a Veterans
-            Service Officer.
-
-            The goal: help Veterans understand the language and
-            purpose of VA claims paperwork—without pretending
-            every claim has the same answer.
-          </p>
-        </div>
-
-        <div class="panel">
-          <p class="small-caps">Coming later</p>
-
-          <h3>The Exotic Veteran™ Live Classroom</h3>
-
-          <p>
-            Focused classes covering general VA claims concepts,
-            illustrated with fictional training examples and
-            moderated educational Q&A.
-
-            No event is currently scheduled or offered for sale.
-          </p>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- FAQ -->
-    <section id="faq">
-      <div class="wrap">
-
-        <p class="eyebrow">Common questions</p>
-        <h2>Before you buy</h2>
-
-        <div class="faq">
-
-          <details>
-            <summary>Is this personalized claims advice?</summary>
-            <p>
-              No. This is general educational material.
-              It isn't legal or medical advice, claim preparation,
-              filing, representation, or a guarantee of a
-              particular VA outcome.
-
-              For your own claim, seek a VA-accredited representative.
-            </p>
-          </details>
-
-          <details>
-            <summary>
-              Is this book written in the usual VA language?
-            </summary>
-            <p>
-              Not even close. This is a blunt, Veteran-to-Veteran
-              read. It includes profanity, real-world observations,
-              fictional training examples, and practical worksheets.
-            </p>
-          </details>
-
-          <details>
-            <summary>What format will I receive?</summary>
-            <p>
-              The planned launch product is a downloadable digital
-              Field Manual in PDF format.
-
-              Final product and download information will appear
-              when checkout opens.
-            </p>
-          </details>
-
-          <details>
-            <summary>
-              Can a VSO organization use it to train staff?
-            </summary>
-            <p>
-              Contact the publisher about future organizational
-              training licenses.
-
-              Purchasing a personal copy does not provide
-              classroom redistribution or reproduction rights.
-            </p>
-          </details>
-
-          <details>
-            <summary>
-              Do you offer strategy sessions or individual claim reviews?
-            </summary>
-            <p>
-              No. DAX Reciprocated is not accepting paid
-              claims-consulting clients.
-
-              Product-related questions can be sent to
-              <a href="mailto:daxreciprocated@gmail.com?subject=Field%20Manual%20product%20question">
-                daxreciprocated@gmail.com
-              </a>.
-
-              Please do not email personal medical records
-              or claim files.
-            </p>
-          </details>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- PURCHASE SECTION -->
-    <section id="purchase">
-      <div class="wrap">
-
-        <div class="panel buy-panel">
-
-          <div>
-            <p class="eyebrow">The field manual</p>
-
-            <h2>
-              Stop guessing. Start understanding.
-            </h2>
-
-            <p id="purchase-note">
-              The digital edition is being prepared for purchase.
-              The final PDF and secure delivery will be tested
-              before checkout goes live.
-            </p>
-          </div>
-
-          <div>
-            <div class="price">$49</div>
-
-            <a id="bottom-buy"
-               class="button"
-               data-buy
-               href="#inside">
-              See What's Inside
-            </a>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="wrap footer-cols">
-
-      <div>
-        <strong>DAX RECIPROCATED LLC</strong>
+      <div class="panel">
+        <p class="small-caps">Coming later</p>
+        <h3>The Exotic Veteran™ Live Classroom</h3>
 
         <p>
-          Publisher of The Exotic Veteran™ educational materials.
-        </p>
+          Focused classes covering general VA claims concepts,
+          illustrated with fictional training examples and
+          moderated educational Q&A.
 
-        <p>
-          © <span id="year"></span> DAX Reciprocated LLC.
-          All rights reserved.
-        </p>
-      </div>
-
-      <div>
-        <p>
-          General educational information only.
-
-          DAX Reciprocated LLC does not prepare, submit,
-          or represent Veterans in VA claims or appeals;
-          it is not affiliated with or endorsed by the
-          U.S. Department of Veterans Affairs.
-        </p>
-
-        <p>
-          For product questions:
-          <a href="mailto:daxreciprocated@gmail.com?subject=Field%20Manual%20product%20question">
-            daxreciprocated@gmail.com
-          </a>
+          No event is currently scheduled or offered for sale.
         </p>
       </div>
-
     </div>
-  </footer>
+  </section>
 
-  <!-- PURCHASE LINK ACTIVATION -->
-  <script>
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="wrap">
+      <p class="eyebrow">Common questions</p>
+      <h2>Before you buy</h2>
 
-    /*
-      IMPORTANT:
+      <div class="faq">
+        <details>
+          <summary>Is this personalized claims advice?</summary>
+          <p>
+            No. This is general educational material.
+            It isn't legal or medical advice, claim preparation,
+            filing, representation, or a guarantee of a
+            particular VA outcome.
 
-      Leave CHECKOUT_URL empty until the final book is
-      uploaded and a real purchase/download test is complete.
+            For your own claim, seek a VA-accredited representative.
+          </p>
+        </details>
 
-      Later, replace the empty quotes with your actual
-      Payhip checkout/product URL.
-    */
+        <details>
+          <summary>
+            Is this book written in the usual VA language?
+          </summary>
+          <p>
+            Not even close. This is a blunt, Veteran-to-Veteran
+            read. It includes profanity, real-world observations,
+            fictional training examples, and practical worksheets.
+          </p>
+        </details>
 
-    const CHECKOUT_URL = "https://payhip.com/b/vZP72";
+        <details>
+          <summary>What format will I receive?</summary>
+          <p>
+            The Field Manual is available now as a downloadable
+            digital PDF. Secure checkout and automatic download
+            delivery are handled by Payhip.
+          </p>
+        </details>
 
-    document.getElementById("year").textContent =
-      new Date().getFullYear();
+        <details>
+          <summary>
+            Can a VSO organization use it to train staff?
+          </summary>
+          <p>
+            Contact the publisher about future organizational
+            training licenses.
 
-    if (CHECKOUT_URL &&
-        /^https:\/\//.test(CHECKOUT_URL)) {
+            Purchasing a personal copy does not provide
+            classroom redistribution or reproduction rights.
+          </p>
+        </details>
 
-      document.getElementById("launch-status").textContent =
-        "Available Now • Digital Edition";
+        <details>
+          <summary>
+            Do you offer strategy sessions or individual claim reviews?
+          </summary>
+          <p>
+            No. DAX Reciprocated is not accepting paid
+            claims-consulting clients.
 
-      document.getElementById("availability-note").textContent =
-        "One-time $49 digital purchase • Download details and policies shown at checkout.";
+            Product-related questions can be sent to
+            <a href="mailto:daxreciprocated@gmail.com?subject=Field%20Manual%20product%20question">
+              daxreciprocated@gmail.com
+            </a>.
 
-      document.getElementById("purchase-note").textContent =
-        "Get the full digital Field Manual and practical worksheets. Your secure checkout handles payment and access to your download.";
+            Please do not email personal medical records
+            or claim files.
+          </p>
+        </details>
+      </div>
+    </div>
+  </section>
 
-      document.querySelectorAll("[data-buy]").forEach(a => {
-        a.href = CHECKOUT_URL;
-        a.textContent = "Get the Field Manual — $49";
-        a.rel = "noopener noreferrer";
-      });
-    }
+  <!-- PURCHASE SECTION -->
+  <section id="purchase">
+    <div class="wrap">
+      <div class="panel buy-panel">
+        <div>
+          <p class="eyebrow">The field manual</p>
+          <h2>Stop guessing. Start understanding.</h2>
 
-  </script>
+          <p id="purchase-note">
+            The full digital Field Manual is available now.
+            Purchase securely through Payhip and receive access
+            to your PDF download after checkout.
+          </p>
+        </div>
+
+        <div>
+          <div class="price">$49</div>
+
+          <a id="bottom-buy"
+             class="button"
+             data-buy
+             href="https://payhip.com/b/vZP72">
+            Get the Field Manual — $49
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER / CONTACT -->
+<footer id="contact">
+  <div class="wrap footer-cols">
+    <div>
+      <strong>DAX RECIPROCATED LLC</strong>
+
+      <p>
+        Publisher of The Exotic Veteran™ educational materials.
+      </p>
+
+      <p>
+        © <span id="year"></span> DAX Reciprocated LLC.
+        All rights reserved.
+      </p>
+    </div>
+
+    <div>
+      <p>
+        General educational information only.
+
+        DAX Reciprocated LLC does not prepare, submit,
+        or represent Veterans in VA claims or appeals;
+        it is not affiliated with or endorsed by the
+        U.S. Department of Veterans Affairs.
+      </p>
+
+      <p>
+        For product questions:
+        <a href="mailto:daxreciprocated@gmail.com?subject=Field%20Manual%20product%20question">
+          daxreciprocated@gmail.com
+        </a>
+      </p>
+
+      <p>
+        Join our free
+        <a href="https://www.facebook.com/share/g/18bo1Lu1gm/"
+           target="_blank" rel="noopener noreferrer">
+          Veteran Community on Facebook
+        </a>
+        for general education and peer discussion.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const CHECKOUT_URL = "https://payhip.com/b/vZP72";
+
+  document.getElementById("year").textContent =
+    new Date().getFullYear();
+
+  if (CHECKOUT_URL && /^https:\/\//.test(CHECKOUT_URL)) {
+    document.getElementById("launch-status").textContent =
+      "Available Now • Digital Edition";
+
+    document.getElementById("availability-note").textContent =
+      "One-time $49 digital purchase • Download details and policies shown at checkout.";
+
+    document.getElementById("purchase-note").textContent =
+      "Get the full digital Field Manual and practical worksheets. Your secure checkout handles payment and access to your download.";
+
+    document.querySelectorAll("[data-buy]").forEach(a => {
+      a.href = CHECKOUT_URL;
+      a.textContent = "Get the Field Manual — $49";
+      a.rel = "noopener noreferrer";
+    });
+  }
+</script>
 
 </body>
 </html>
