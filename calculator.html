@@ -1,716 +1,1085 @@
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VA Disability Calculator 2026 | DAX Reciprocated</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0a0d0c">
+<meta name="description" content="DAX Reciprocated's free 2026 VA combined disability rating and compensation estimator, including the bilateral factor and dependents.">
+<title>2026 VA Disability Calculator | DAX Reciprocated</title>
+
 <style>
-:root{
-    --primary:#7a0f14;
-    --primary-dark:#540b0f;
-    --secondary:#202531;
-    --accent:#f6f1eb;
-    --surface:#ffffff;
-    --surface-2:#f8f6f2;
-    --text:#1f2430;
-    --muted:#5f6777;
-    --success:#2f6f3e;
-    --border:#ddd6cc;
-    --bilateral:#1d5fd0;
-    --shadow:0 12px 30px rgba(0,0,0,.08);
+:root {
+  color-scheme:dark;
+  --bg:#080c0b;
+  --card:#111917;
+  --card2:#17211d;
+  --stroke:#314038;
+  --green:#9bd48b;
+  --gold:#e8c47b;
+  --text:#f3f7f2;
+  --muted:#afc0b5;
 }
-*{box-sizing:border-box}
-body{
-    margin:0;
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    background:linear-gradient(180deg,#f4f1eb 0%,#ece7df 100%);
-    color:var(--text);
-    line-height:1.5;
-    padding:20px;
+* {box-sizing:border-box}
+html {scroll-behavior:smooth}
+body {
+  margin:0;
+  background:radial-gradient(circle at 90% 0,#153022 0,transparent 38%),var(--bg);
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  color:var(--text);
+  line-height:1.55;
 }
-.wrap{
-    max-width:760px;
-    margin:0 auto;
+button,select,input {font:inherit}
+button {cursor:pointer}
+a {color:var(--green)}
+a:focus-visible,button:focus-visible,select:focus-visible {
+  outline:3px solid var(--gold);
+  outline-offset:3px;
 }
-.card{
-    background:var(--surface);
-    border-radius:18px;
-    box-shadow:var(--shadow);
-    padding:24px;
-    border:1px solid rgba(0,0,0,.05);
+.shell {width:min(1040px,calc(100% - 32px));margin:auto}
+.topbar {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  padding:22px 0;
+  border-bottom:1px solid var(--stroke);
 }
-h1{
-    margin:0 0 6px;
-    text-align:center;
-    color:var(--primary);
-    font-size:clamp(1.9rem,3vw,2.4rem);
-    line-height:1.1;
+.brand {
+  color:white;
+  text-decoration:none;
+  font-size:.88rem;
+  font-weight:900;
+  letter-spacing:.11em;
 }
-.subtitle{
-    text-align:center;
-    color:var(--muted);
-    font-size:.98rem;
-    margin-bottom:24px;
+.brand span {
+  display:block;
+  color:var(--green);
+  font-size:.68rem;
+  letter-spacing:.2em;
 }
-.notice{
-    background:var(--accent);
-    border:1px solid var(--border);
-    border-radius:12px;
-    padding:14px 16px;
-    margin-bottom:20px;
-    color:#473d34;
-    font-size:.92rem;
+.back {font-size:.85rem;text-decoration:none}
+.hero {padding:48px 0 26px}
+.eyebrow {
+  color:var(--green);
+  font-size:.75rem;
+  letter-spacing:.2em;
+  font-weight:850;
+  text-transform:uppercase;
 }
-.section-title{
-    font-weight:800;
-    color:var(--secondary);
-    margin:18px 0 10px;
-    display:block;
-    text-transform:uppercase;
-    font-size:.8rem;
-    letter-spacing:1.2px;
+h1 {
+  font-size:clamp(2.1rem,5vw,3.7rem);
+  line-height:1.08;
+  margin:10px 0 15px;
+  letter-spacing:-.04em;
 }
-.body-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:10px;
-    margin-bottom:20px;
+h1 em {color:var(--green);font-style:normal}
+h2 {font-size:1.32rem;line-height:1.3;margin:0}
+p {margin:10px 0}
+.lede {max-width:740px;color:var(--muted);font-size:1.07rem}
+.meta {display:flex;gap:9px;flex-wrap:wrap;margin:18px 0}
+.pill {
+  font-size:.74rem;
+  font-weight:700;
+  border:1px solid #486251;
+  border-radius:99px;
+  padding:5px 10px;
+  color:#d8ead7;
 }
-.percent-grid{
-    display:grid;
-    grid-template-columns:repeat(6,1fr);
-    gap:8px;
-    margin-bottom:20px;
+.work {
+  display:grid;
+  grid-template-columns:minmax(0,1.35fr) minmax(275px,.65fr);
+  gap:20px;
+  align-items:start;
 }
-.btn-body,.btn-percent,.btn-small{
-    appearance:none;
-    border:2px solid #e5e1db;
-    background:#fff;
-    color:#4f5563;
-    border-radius:10px;
-    cursor:pointer;
-    transition:.2s ease;
-    font-weight:700;
+.pane {
+  background:var(--card);
+  border:1px solid var(--stroke);
+  border-radius:16px;
+  padding:24px;
+  margin-bottom:18px;
+  box-shadow:0 18px 40px #0002;
 }
-.btn-body{
-    padding:14px;
-    font-size:1rem;
+.pane h2 .num {color:var(--green);margin-right:9px}
+.hint {color:var(--muted);font-size:.88rem;margin:8px 0 18px}
+.label {
+  font-weight:750;
+  font-size:.88rem;
+  display:block;
+  margin:18px 0 9px;
 }
-.btn-percent{
-    padding:12px 0;
-    font-size:.95rem;
+.side-grid,.rating-grid {display:grid;gap:9px}
+.side-grid {grid-template-columns:repeat(2,minmax(0,1fr))}
+.rating-grid {grid-template-columns:repeat(5,minmax(0,1fr))}
+.choice {
+  background:#1d2923;
+  color:var(--text);
+  border:1px solid #485a4c;
+  border-radius:9px;
+  padding:11px 8px;
+  font-weight:700;
+  min-height:47px;
 }
-.btn-small{
-    padding:10px 14px;
-    font-size:.92rem;
+.choice:hover {border-color:var(--green)}
+.choice[aria-pressed="true"] {
+  background:#2d5436;
+  color:#fff;
+  border:2px solid var(--green);
+  padding:10px 7px;
 }
-.btn-body:hover,.btn-percent:hover,.btn-small:hover{
-    border-color:var(--primary);
-    transform:translateY(-1px);
+.choice.wide {grid-column:span 2}
+.actions {
+  display:flex;
+  gap:10px;
+  margin-top:18px;
+  flex-wrap:wrap;
 }
-.selected{
-    background:var(--primary)!important;
-    color:#fff!important;
-    border-color:var(--primary-dark)!important;
+.primary,.secondary {
+  border-radius:9px;
+  padding:13px 17px;
+  font-weight:800;
+  border:1px solid var(--green);
+  min-height:46px;
 }
-.full-width{grid-column:span 2}
-.action-row{
-    display:grid;
-    grid-template-columns:1fr auto;
-    gap:10px;
-    margin:10px 0 20px;
+.primary {background:var(--green);color:#0b160e}
+.primary:disabled {opacity:.45;cursor:not-allowed}
+.secondary {background:transparent;color:var(--green)}
+.add-list {list-style:none;padding:0;margin:8px 0}
+.add-list li {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  padding:10px 0;
+  border-bottom:1px solid var(--stroke);
 }
-.btn-add{
-    width:100%;
-    background:var(--success);
-    color:#fff;
-    border:none;
-    padding:16px;
-    font-size:1.06rem;
-    border-radius:10px;
-    cursor:pointer;
-    font-weight:800;
-    opacity:.45;
-    pointer-events:none;
-    transition:.2s ease;
+.add-list li:last-child {border-bottom:0}
+.remove {
+  border:1px solid #6f4646;
+  background:#312020;
+  color:#ffceca;
+  border-radius:7px;
+  padding:5px 10px;
+  font-size:.83rem;
 }
-.btn-add.active{
-    opacity:1;
-    pointer-events:auto;
+.empty {color:var(--muted);font-size:.87rem}
+.dependents {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
 }
-.result-box{
-    background:linear-gradient(135deg,var(--secondary) 0%, #11151d 100%);
-    color:#fff;
-    border-radius:16px;
-    padding:24px;
-    text-align:center;
-    margin-bottom:18px;
+label {
+  display:block;
+  color:#e1e9e1;
+  font-size:.85rem;
+  font-weight:720;
+  margin:0 0 7px;
 }
-.result-label{
-    font-size:.9rem;
-    text-transform:uppercase;
-    letter-spacing:1px;
-    opacity:.8;
+select {
+  width:100%;
+  background:#1d2923;
+  border:1px solid #526458;
+  border-radius:9px;
+  padding:12px;
+  color:var(--text);
 }
-.big-rate{
-    font-size:3.6rem;
-    font-weight:900;
-    line-height:1;
-    margin:10px 0;
+.field-note {
+  margin-top:16px;
+  color:var(--muted);
+  font-size:.79rem;
 }
-.sub-rate{
-    font-size:1.02rem;
-    color:#f3d56b;
-    font-weight:700;
-    margin-bottom:6px;
+.results {position:sticky;top:18px}
+.resultbox {
+  background:linear-gradient(150deg,#1b3d26,#14201c);
+  border:1px solid #537b54;
+  border-radius:14px;
+  padding:21px;
 }
-.pay-rate{
-    font-size:1.02rem;
+.resultbox small {
+  display:block;
+  color:#d2e3d1;
+  font-weight:700;
+  letter-spacing:.05em;
+  text-transform:uppercase;
 }
-.helper{
-    margin-top:10px;
-    font-size:.84rem;
-    color:#d7dbe2;
+.number {
+  font-size:clamp(3rem,6vw,4.2rem);
+  font-weight:950;
+  color:#fff;
+  letter-spacing:-.05em;
+  line-height:1.15;
+  margin:6px 0;
 }
-.bilateral-box,.math-box{
-    background:#eef4ff;
-    border-left:5px solid var(--bilateral);
-    padding:15px;
-    margin-bottom:16px;
-    border-radius:8px;
-    display:none;
+.payment {
+  font-weight:900;
+  font-size:clamp(1.7rem,3vw,2.2rem);
+  color:var(--gold);
+  line-height:1.2;
+  margin:8px 0;
 }
-.bilateral-title{
-    color:var(--bilateral);
-    font-weight:800;
-    margin-bottom:8px;
+.result-meta {font-size:.81rem;color:#cfdfd1;margin-top:8px}
+.detail {
+  background:#0b1410;
+  border:1px solid var(--stroke);
+  border-radius:10px;
+  padding:12px;
+  margin-top:13px;
+  font-size:.85rem;
+  color:#d1e0d5;
 }
-.math-step{
-    font-size:.92rem;
-    margin-bottom:5px;
-    color:#344054;
+details summary {cursor:pointer;font-weight:750;color:var(--green)}
+details p,details li {font-size:.8rem;color:#cad8ce}
+ol {padding-left:19px}
+.feature {
+  border:1px solid #5b6e48;
+  border-radius:15px;
+  padding:26px;
+  background:linear-gradient(115deg,#22271c,#111813);
+  margin:26px 0;
 }
-.list-container{
-    background:var(--surface-2);
-    border-radius:12px;
-    border:1px solid #ece6dc;
-    margin-bottom:20px;
-    overflow:hidden;
-    display:none;
+.feature h2 {color:var(--gold);margin:7px 0}
+.feature p {color:#ccd8cc;max-width:800px}
+.book-button {
+  background:var(--gold);
+  border-radius:9px;
+  color:#1e190e;
+  display:inline-block;
+  text-decoration:none;
+  font-weight:850;
+  padding:12px 20px;
+  margin-top:12px;
 }
-.list-item{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:10px;
-    padding:12px 15px;
-    border-bottom:1px solid #e8e1d5;
-    font-size:.95rem;
+.smallprint {
+  color:var(--muted);
+  font-size:.78rem;
+  padding:4px 0 32px;
 }
-.list-item:last-child{border-bottom:none}
-.delete-btn{
-    color:#b42318;
-    cursor:pointer;
-    font-weight:800;
-    padding-left:10px;
+.smallprint a {color:#c5dfb7}
+hr {border:0;border-top:1px solid var(--stroke);margin:18px 0}
+.compact {font-size:.84rem}
+#noticeLine {font-size:.79rem;color:#e8d8af}
+.fields-caption {color:var(--muted);font-size:.74rem;margin-top:8px}
+
+@media(max-width:790px) {
+  .work {grid-template-columns:1fr}
+  .results {position:static;grid-row:1}
+  .hero {padding:27px 0 12px}
+  .pane {padding:18px}
+  .topbar {align-items:flex-start}
 }
-.settings{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:14px;
-    padding-top:14px;
-    border-top:1px solid #ece6dc;
-    margin-bottom:18px;
-}
-label{
-    display:block;
-    font-size:.88rem;
-    margin-bottom:6px;
-    color:var(--muted);
-    font-weight:700;
-}
-select,input{
-    width:100%;
-    padding:11px 12px;
-    border:1px solid #d3d7de;
-    border-radius:8px;
-    font-size:.95rem;
-    background:#fff;
-}
-.disclaimer{
-    font-size:.76rem;
-    color:#6b7280;
-    margin-top:20px;
-    line-height:1.5;
-    border-top:1px solid #e9e3d8;
-    padding-top:14px;
-}
-.cta{
-    max-width:760px;
-    margin:22px auto 0;
-    text-align:center;
-    background:#fff;
-    border:1px solid rgba(0,0,0,.05);
-    border-radius:18px;
-    box-shadow:var(--shadow);
-    padding:24px;
-}
-.cta h2{
-    margin:0 0 8px;
-    color:var(--primary);
-    font-size:1.45rem;
-}
-.cta p{
-    margin:0 0 14px;
-    color:#404756;
-}
-.cta a{
-    display:inline-block;
-    background:var(--success);
-    color:#fff;
-    padding:13px 26px;
-    border-radius:8px;
-    text-decoration:none;
-    font-weight:800;
-}
-.cta .small{
-    font-size:.84rem;
-    color:#6b7280;
-    margin-top:10px;
-}
-@media (max-width:640px){
-    .body-grid,.settings{grid-template-columns:1fr}
-    .full-width{grid-column:span 1}
-    .percent-grid{grid-template-columns:repeat(3,1fr)}
-    .action-row{grid-template-columns:1fr}
-    .big-rate{font-size:3rem}
+@media(max-width:400px) {
+  .rating-grid {grid-template-columns:repeat(3,minmax(0,1fr))}
+  .dependents {grid-template-columns:1fr}
+  .choice {font-size:.84rem}
+  .number {font-size:3rem}
 }
 </style>
 </head>
+
 <body>
-<div class="wrap">
-    <div class="card">
-        <h1>VA Disability Calculator 2026</h1>
-        <div class="subtitle">Educational estimate • Whole person method • Bilateral factor support</div>
+<header class="shell topbar">
+  <a class="brand" href="/">
+    DAX RECIPROCATED
+    <span>THE EXOTIC VETERAN™</span>
+  </a>
+  <a class="back" href="/">← Back to website</a>
+</header>
 
-        <div class="notice">
-            This calculator is designed for educational use and to provide a closer estimate of how combined ratings and monthly compensation may work. It is not an official VA tool, and actual VA decisions and payments can differ based on the ratings assigned, dependency details, and other benefits or adjustments.
+<main class="shell">
+
+<section class="hero">
+  <div class="eyebrow">Free Veteran resource</div>
+
+  <h1>2026 VA Disability <em>Calculator</em></h1>
+
+  <p class="lede">
+    Add your service-connected ratings, choose your dependents,
+    and see an estimated combined rating and monthly compensation.
+    No sign-up. No personal claim files. No bullshit.
+  </p>
+
+  <div class="meta">
+    <span class="pill">2026 rates • effective Dec 1, 2025</span>
+    <span class="pill">Bilateral factor support</span>
+    <span class="pill">Mobile-friendly</span>
+  </div>
+</section>
+
+<div class="work">
+
+  <div>
+
+    <section class="pane" aria-labelledby="step1">
+      <h2 id="step1">
+        <span class="num">01</span> Add your disabilities
+      </h2>
+
+      <p class="hint">
+        Choose a body area, select the VA-assigned percentage,
+        then tap <strong>Add disability</strong>.
+        For non-extremity conditions, use
+        “Other / not an extremity.”
+        Only tag a limb when that rating is eligible
+        for the bilateral-factor rules.
+      </p>
+
+      <span class="label">Body area</span>
+
+      <div class="side-grid" id="sides">
+        <button type="button" class="choice"
+          data-side="ul" aria-pressed="false">
+          Left arm / hand
+        </button>
+
+        <button type="button" class="choice"
+          data-side="ur" aria-pressed="false">
+          Right arm / hand
+        </button>
+
+        <button type="button" class="choice"
+          data-side="ll" aria-pressed="false">
+          Left leg / foot
+        </button>
+
+        <button type="button" class="choice"
+          data-side="lr" aria-pressed="false">
+          Right leg / foot
+        </button>
+
+        <button type="button" class="choice wide"
+          data-side="other" aria-pressed="true">
+          Other / not an extremity
+        </button>
+      </div>
+
+      <span class="label">Disability rating</span>
+      <div class="rating-grid" id="ratings"></div>
+
+      <div class="actions">
+        <button type="button" class="primary"
+          id="add" disabled>
+          + Add disability
+        </button>
+
+        <button type="button" class="secondary" id="clear">
+          Clear all
+        </button>
+      </div>
+
+      <hr>
+
+      <strong class="compact">Your added ratings</strong>
+
+      <p class="empty" id="none">
+        No ratings added yet.
+      </p>
+
+      <ul class="add-list" id="entries" aria-live="polite"></ul>
+    </section>
+
+    <section class="pane" aria-labelledby="step2">
+      <h2 id="step2">
+        <span class="num">02</span> Add your dependents
+      </h2>
+
+      <p class="hint">
+        Dependency allowances generally begin at a combined
+        rating of 30%. A child or parent must meet VA eligibility
+        requirements to count.
+      </p>
+
+      <div class="dependents">
+
+        <div>
+          <label for="spouse">Spouse</label>
+          <select id="spouse">
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+          </select>
         </div>
 
-        <label class="section-title">1. Choose Body Area</label>
-        <div class="body-grid">
-            <button class="btn-body" onclick="setPart('Left Upper Extremity', 'upper-left', this)">Left Arm / Hand</button>
-            <button class="btn-body" onclick="setPart('Right Upper Extremity', 'upper-right', this)">Right Arm / Hand</button>
-            <button class="btn-body" onclick="setPart('Left Lower Extremity', 'lower-left', this)">Left Leg / Foot</button>
-            <button class="btn-body" onclick="setPart('Right Lower Extremity', 'lower-right', this)">Right Leg / Foot</button>
-            <button class="btn-body full-width" onclick="setPart('Other / Non-Bilateral', 'other', this)">Other / Non-Bilateral</button>
+        <div>
+          <label for="aa">
+            Spouse qualifies for Aid & Attendance
+          </label>
+          <select id="aa">
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+          </select>
         </div>
 
-        <label class="section-title">2. Choose Rating %</label>
-        <div class="percent-grid">
-            <button class="btn-percent" onclick="setPercent(0, this)">0%</button>
-            <button class="btn-percent" onclick="setPercent(10, this)">10%</button>
-            <button class="btn-percent" onclick="setPercent(20, this)">20%</button>
-            <button class="btn-percent" onclick="setPercent(30, this)">30%</button>
-            <button class="btn-percent" onclick="setPercent(40, this)">40%</button>
-            <button class="btn-percent" onclick="setPercent(50, this)">50%</button>
-            <button class="btn-percent" onclick="setPercent(60, this)">60%</button>
-            <button class="btn-percent" onclick="setPercent(70, this)">70%</button>
-            <button class="btn-percent" onclick="setPercent(80, this)">80%</button>
-            <button class="btn-percent" onclick="setPercent(90, this)">90%</button>
-            <button class="btn-percent" onclick="setPercent(100, this)">100%</button>
+        <div>
+          <label for="under">Children under age 18</label>
+          <select id="under"></select>
         </div>
 
-        <div class="action-row">
-            <button id="addBtn" class="btn-add" onclick="addItem()">+ Add Disability</button>
-            <button class="btn-small" onclick="clearAll()">Clear All</button>
+        <div>
+          <label for="school">
+            Qualifying schoolchildren aged 18–23
+          </label>
+          <select id="school"></select>
         </div>
 
-        <div class="result-box">
-            <div class="result-label">Estimated Combined Rating</div>
-            <div class="big-rate" id="finalRating">0%</div>
-            <div class="sub-rate" id="rawRating">Exact Raw Score: 0.0%</div>
-            <div class="pay-rate" id="monthlyPay">$0.00 / mo</div>
-            <div class="helper" id="payContext">Veteran alone</div>
+        <div>
+          <label for="parents">Qualifying dependent parents</label>
+          <select id="parents">
+            <option value="0">None</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+          </select>
         </div>
 
-        <div class="bilateral-box" id="bilateralBox">
-            <div class="bilateral-title">Bilateral Factor Applied</div>
-            <div id="bilateralMath"></div>
-        </div>
+      </div>
 
-        <div class="math-box" id="mathBox">
-            <div class="bilateral-title">How the Combined Rating Was Built</div>
-            <div id="mathSteps"></div>
-        </div>
+      <div class="field-note">
+        For a child aged 18–23, school attendance and other
+        eligibility rules apply. VA eligibility generally
+        ends before age 24. This estimate does not account
+        for every dependency situation.
+      </div>
+    </section>
 
-        <div class="list-container" id="listContainer"></div>
+  </div>
 
-        <div class="settings">
-            <div>
-                <label for="status">Marital Status</label>
-                <select id="status" onchange="calculate()">
-                    <option value="single">Veteran Alone</option>
-                    <option value="spouse">Veteran with Spouse</option>
-                </select>
-            </div>
+  <aside class="results" aria-label="Estimated results">
 
-            <div>
-                <label for="childrenUnder18">Children Under 18</label>
-                <select id="childrenUnder18" onchange="calculate()">
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>
-            </div>
+    <div class="resultbox">
 
-            <div>
-                <label for="children18to24">Children 18–24 in School</label>
-                <select id="children18to24" onchange="calculate()">
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                </select>
-            </div>
+      <small>Estimated combined rating</small>
+      <div class="number" id="combined" aria-live="polite">
+        0%
+      </div>
 
-            <div>
-                <label for="parents">Dependent Parents</label>
-                <select id="parents" onchange="calculate()">
-                    <option value="0">0</option>
-                    <option value="1">1 Parent</option>
-                    <option value="2">2 Parents</option>
-                </select>
-            </div>
-        </div>
+      <small>Estimated monthly compensation</small>
+      <div class="payment" id="pay" aria-live="polite">
+        $0.00
+      </div>
 
-        <div class="disclaimer">
-            <strong>Educational Use Disclaimer:</strong> This tool is for educational purposes only and is not legal, medical, tax, or official VA advice. Combined-rating calculations are modeled on the VA whole-person method and bilateral-factor rules, but actual ratings and compensation may differ from this estimate depending on the VA’s determinations, dependency status, special monthly compensation, or other factors.
-        </div>
-    </div>
+      <p class="result-meta" id="raw">
+        Combined value: 0%
+      </p>
 
-    <div class="cta">
-        <h2>Need help understanding what these results may mean?</h2>
+      <p class="result-meta" id="depLabel">
+        Veteran without dependents
+      </p>
+
+      <div id="noticeLine">
+        2026 VA rate table (effective December 1, 2025).
+      </div>
+
+      <div class="detail" id="bilateralResult">
+        No bilateral factor applied.
+      </div>
+
+      <details class="detail">
+        <summary>How was my rating calculated?</summary>
+
+        <ol id="math">
+          <li>Add disability ratings to see the steps.</li>
+        </ol>
+
         <p>
-            If you want help reviewing your rating picture and discussing possible next steps, you can book a consultation. The consultation fee is applied toward the flat fee if you decide to move forward.
+          Combined values are rounded at each table step,
+          then converted to the nearest 10% at the end.
+          An applicable bilateral factor is handled
+          before other ratings.
         </p>
-        <a href="https://buy.stripe.com/dRm00iamk8qkeWb2R74Vy00" target="_blank" rel="noopener noreferrer">
-            Book Consultation
-        </a>
-        <div class="small">
-            After payment, email your receipt and preferred days/times to <strong>daxreciprocated@gmail.com</strong>. You decide what information or documents you want to share, and any review is for educational purposes only.
-        </div>
+      </details>
+
     </div>
+
+    <p class="fields-caption">
+      Educational estimate only. VA may calculate or award a
+      different amount, including for special monthly compensation,
+      Individual Unemployability, offsets, or special circumstances.
+    </p>
+
+  </aside>
 </div>
 
-<script>
-let items = [];
-let currentSelection = { name: null, type: null, value: null };
+<section class="feature">
+  <div class="eyebrow">Understand more than the percentage</div>
 
-const payBase = {
-    single: {
-        0: 0.00, 10: 180.42, 20: 356.66, 30: 552.47, 40: 795.84, 50: 1132.90,
-        60: 1435.02, 70: 1808.45, 80: 2102.15, 90: 2362.30, 100: 3938.58
-    },
-    spouse: {
-        0: 0.00, 10: 180.42, 20: 356.66, 30: 621.47, 40: 887.84, 50: 1248.90,
-        60: 1566.60, 70: 1961.62, 80: 2276.91, 90: 2559.68, 100: 4158.17
-    },
-    oneParent: {
-        0: 0.00, 10: 180.42, 20: 356.66, 30: 604.47, 40: 865.84, 50: 1220.90,
-        60: 1540.02, 70: 1931.81, 80: 2242.63, 90: 2521.00, 100: 4114.40
-    },
-    twoParents: {
-        0: 0.00, 10: 180.42, 20: 356.66, 30: 656.47, 40: 935.84, 50: 1308.90,
-        60: 1644.73, 70: 2060.17, 80: 2383.11, 90: 2679.30, 100: 4290.64
-    },
-    childOnly: {
-        0: 0.00, 10: 180.42, 20: 356.66, 30: 596.47, 40: 853.84, 50: 1205.90,
-        60: 1523.02, 70: 1910.45, 80: 2219.15, 90: 2494.30, 100: 4085.43
-    },
-    spouseChild: {
-        0: 0.00, 10: 180.42, 20: 356.66, 30: 666.47, 40: 947.84, 50: 1322.90,
-        60: 1663.23, 70: 2074.70, 80: 2406.43, 90: 2704.63, 100: 4318.99
-    },
-    oneParentChild: {
-        0: 0.00, 10: 180.42, 20: 356.66, 30: 648.47, 40: 923.84, 50: 1293.90,
-        60: 1628.02, 70: 2041.81, 80: 2370.63, 90: 2663.00, 100: 4261.25
-    },
-    twoParentsChild: {
-        0: 0.00, 10: 180.42, 20: 356.66, 30: 700.47, 40: 993.84, 50: 1381.90,
-        60: 1733.02, 70: 2170.17, 80: 2511.11, 90: 2821.30, 100: 4437.49
-    },
-    spouseOneParent: {
-        0: 0.00, 10: 180.42, 20: 356.66, 30: 673.47, 40: 957.84, 50: 1336.90,
-        60: 1671.46, 70: 2084.98, 80: 2417.74, 90: 2717.99, 100: 4334.41
-    },
-    spouseTwoParents: {
-        0: 0.00, 10: 180.42, 20: 356.66, 30: 725.47, 40: 1027.84, 50: 1424.90,
-        60: 1776.31, 70: 2213.34, 80: 2558.22, 90: 2876.29, 100: 4510.65
-    },
-    spouseOneParentChild: {
-        0: 0.00, 10: 180.42, 20: 356.66, 30: 718.47, 40: 1017.88, 50: 1410.46,
-        60: 1768.09, 70: 2198.06, 80: 2547.27, 90: 2862.94, 100: 4495.23
-    },
-    spouseTwoParentsChild: {
-        0: 0.00, 10: 180.42, 20: 356.66, 30: 770.47, 40: 1087.84, 50: 1498.46,
-        60: 1873.09, 70: 2326.42, 80: 2687.75, 90: 3021.24, 100: 4671.47
-    }
+  <h2>The Exotic Veteran™ Field Manual</h2>
+
+  <p>
+    Your rating is just a number until you understand the evidence,
+    the exam, and the decision behind it. The Quit Fuckin' Around
+    Method™ breaks the process down in plain English,
+    with practical worksheets and the Claim Autopsy™
+    training framework.
+  </p>
+
+  <a
+    class="book-button"
+    href="https://payhip.com/b/vZP72"
+    rel="noopener noreferrer"
+    target="_blank">
+    Explore the Field Manual — $49
+  </a>
+</section>
+
+<footer class="smallprint">
+
+  <p>
+    <strong>Educational disclaimer:</strong>
+    DAX Reciprocated LLC is an independent educational publisher,
+    not VA or an accredited claims representative.
+    This tool is not individualized claims advice,
+    a guarantee of VA benefits, or an official determination.
+    Do not enter private medical records.
+
+    Check your actual VA decision and current
+    <a href="https://www.va.gov/disability/compensation-rates/veteran-rates/"
+       target="_blank" rel="noopener noreferrer">
+       VA compensation tables</a>.
+
+    Calculations model
+    <a href="https://www.ecfr.gov/current/title-38/chapter-I/part-4/subpart-A/section-4.25"
+       target="_blank" rel="noopener noreferrer">38 CFR § 4.25</a>
+    and
+    <a href="https://www.ecfr.gov/current/title-38/chapter-I/part-4/subpart-A/section-4.26"
+       target="_blank" rel="noopener noreferrer">§ 4.26</a>.
+
+    Includes common dependency categories, but not SMC,
+    TDIU-specific payments, dependent-child disability exceptions,
+    or every eligibility scenario.
+  </p>
+
+  <p>
+    Rates shown are for the
+    <strong>2026 compensation year</strong>
+    (effective Dec 1, 2025).
+    Refresh this tool when VA publishes new rates
+    effective Dec 1, 2026.
+
+    © 2026 DAX Reciprocated LLC.
+  </p>
+
+</footer>
+</main>
+
+<script>
+'use strict';
+
+// 2026 VA compensation rates effective December 1, 2025.
+// Source:
+// https://www.va.gov/disability/compensation-rates/veteran-rates/
+
+const RATE_COLS = [30,40,50,60,70,80,90,100];
+
+const RATE_TABLE = {
+  single:[
+    552.47,795.84,1132.90,1435.02,
+    1808.45,2102.15,2362.30,3938.58
+  ],
+  spouse:[
+    617.47,882.84,1241.90,1566.02,
+    1961.45,2277.15,2559.30,4158.17
+  ],
+  spouseOneParent:[
+    669.47,952.84,1329.90,1671.02,
+    2084.45,2417.15,2717.30,4334.41
+  ],
+  spouseTwoParents:[
+    721.47,1022.84,1417.90,1776.02,
+    2207.45,2557.15,2875.30,4510.65
+  ],
+  oneParent:[
+    604.47,865.84,1220.90,1540.02,
+    1931.45,2242.15,2520.30,4114.82
+  ],
+  twoParents:[
+    656.47,935.84,1308.90,1645.02,
+    2054.45,2382.15,2678.30,4291.06
+  ],
+  childOnly:[
+    596.47,853.84,1205.90,1523.02,
+    1910.45,2219.15,2494.30,4085.43
+  ],
+  spouseChild:[
+    666.47,947.84,1322.90,1663.02,
+    2074.45,2406.15,2704.30,4318.99
+  ],
+  oneParentChild:[
+    648.47,923.84,1293.90,1628.02,
+    2033.45,2359.15,2652.30,4261.67
+  ],
+  twoParentsChild:[
+    700.47,993.84,1381.90,1733.02,
+    2156.45,2499.15,2810.30,4437.91
+  ],
+  spouseOneParentChild:[
+    718.47,1017.84,1410.90,1768.02,
+    2197.45,2546.15,2862.30,4495.23
+  ],
+  spouseTwoParentsChild:[
+    770.47,1087.84,1498.90,1873.02,
+    2320.45,2686.15,3020.30,4671.47
+  ]
 };
 
-const additionalChildUnder18 = {30: 31.00, 40: 42.00, 50: 53.00, 60: 63.00, 70: 74.00, 80: 84.00, 90: 95.00, 100: 106.14};
-const additionalSchoolChild = {30: 102.00, 40: 136.00, 50: 171.00, 60: 205.00, 70: 239.00, 80: 273.00, 90: 307.00, 100: 342.85};
+const EXTRA_UNDER = [
+  32,43,54,65,76,87,98,109.11
+];
 
-function money(n){
-    return `$${Number(n).toLocaleString('en-US',{minimumFractionDigits:2, maximumFractionDigits:2})}`;
+const EXTRA_SCHOOL = [
+  105,140,176,211,246,281,317,352.45
+];
+
+const EXTRA_AA = [
+  61,81,101,121,141,161,181,201.41
+];
+
+const SIDE_NAMES = {
+  ul:'Left arm / hand',
+  ur:'Right arm / hand',
+  ll:'Left leg / foot',
+  lr:'Right leg / foot',
+  other:'Other / non-extremity'
+};
+
+let entries = [];
+let side = 'other';
+let rating = null;
+let counter = 0;
+
+const $ = id => document.getElementById(id);
+
+const cash = x => Number(x).toLocaleString(
+  'en-US',
+  {style:'currency',currency:'USD'}
+);
+
+const roundHalfUp = x => Math.floor(x + 0.5 + 1e-10);
+
+function roundTen(x) {
+  return Math.min(100,Math.floor((x+5)/10)*10);
 }
 
-function setPart(name, type, btn){
-    currentSelection.name = name;
-    currentSelection.type = type;
-    document.querySelectorAll('.btn-body').forEach(b => b.classList.remove('selected'));
-    btn.classList.add('selected');
-    checkAddButton();
+function combine(a,b) {
+  return roundHalfUp(a+(100-a)*b/100);
 }
 
-function setPercent(val, btn){
-    currentSelection.value = val;
-    document.querySelectorAll('.btn-percent').forEach(b => b.classList.remove('selected'));
-    btn.classList.add('selected');
-    checkAddButton();
+function combineList(nums) {
+  const arr = nums.filter(n=>n>0).sort((a,b)=>b-a);
+  const steps = [];
+  let v = arr[0] || 0;
+
+  if(!arr.length) {
+    return {value:0,steps};
+  }
+
+  steps.push(`Start at ${v}%`);
+
+  for(const n of arr.slice(1)) {
+    const next = combine(v,n);
+    steps.push(`${v}% combined with ${n}% → ${next}%`);
+    v = next;
+  }
+
+  return {value:v,steps};
 }
 
-function checkAddButton(){
-    const ready = currentSelection.name && currentSelection.value !== null;
-    document.getElementById('addBtn').classList.toggle('active', ready);
-}
+function evaluate(subset) {
+  const selected = new Set(subset.map(e=>e.id));
 
-function addItem(){
-    if(!currentSelection.name || currentSelection.value === null) return;
-    items.push({...currentSelection});
-    currentSelection = { name:null, type:null, value:null };
-    document.querySelectorAll('.btn-body,.btn-percent').forEach(b => b.classList.remove('selected'));
-    document.getElementById('addBtn').classList.remove('active');
-    renderList();
-    calculate();
-}
+  const others = entries
+    .filter(e=>!selected.has(e.id)&&e.value>0)
+    .map(e=>e.value);
 
-function deleteItem(idx){
-    items.splice(idx,1);
-    renderList();
-    calculate();
-}
-
-function clearAll(){
-    items = [];
-    currentSelection = { name:null, type:null, value:null };
-    document.querySelectorAll('.btn-body,.btn-percent').forEach(b => b.classList.remove('selected'));
-    document.getElementById('addBtn').classList.remove('active');
-    renderList();
-    calculate();
-}
-
-function renderList(){
-    const container = document.getElementById('listContainer');
-    container.innerHTML = '';
-    if(!items.length){
-        container.style.display = 'none';
-        return;
-    }
-    container.style.display = 'block';
-    items.forEach((item, idx) => {
-        const div = document.createElement('div');
-        div.className = 'list-item';
-        div.innerHTML = `<span>${item.name} — ${item.value}%</span><span class="delete-btn" onclick="deleteItem(${idx})">×</span>`;
-        container.appendChild(div);
-    });
-}
-
-function combineTwo(a,b){
-    return a + b * (100 - a) / 100;
-}
-
-function vaCombineDetailed(ratings){
-    const sorted = ratings.filter(v => v > 0).sort((a,b)=>b-a);
-    if(!sorted.length) return { raw:0, steps:[] };
-
-    let current = sorted[0];
-    const steps = [`Start with highest rating: ${sorted[0].toFixed(1)}%`];
-
-    for(let i=1;i<sorted.length;i++){
-        const before = current;
-        current = combineTwo(current, sorted[i]);
-        steps.push(`${before.toFixed(1)}% combined with ${sorted[i].toFixed(1)}% = ${current.toFixed(1)}%`);
-    }
-
-    return { raw: current, steps };
-}
-
-function roundCombinedRating(val){
-    if(val <= 0) return 0;
-    return Math.min(100, Math.round(val / 10) * 10);
-}
-
-function applyBilateralFactor(){
-    const bilateralBox = document.getElementById('bilateralBox');
-    const mathDiv = document.getElementById('bilateralMath');
-
-    const upperLeft = items.filter(i => i.type === 'upper-left' && i.value >= 10).map(i => i.value);
-    const upperRight = items.filter(i => i.type === 'upper-right' && i.value >= 10).map(i => i.value);
-    const lowerLeft = items.filter(i => i.type === 'lower-left' && i.value >= 10).map(i => i.value);
-    const lowerRight = items.filter(i => i.type === 'lower-right' && i.value >= 10).map(i => i.value);
-
-    const bilateralEligible = [];
-    let bilateralNotes = [];
-
-    const hasUpperPair = upperLeft.length && upperRight.length;
-    const hasLowerPair = lowerLeft.length && lowerRight.length;
-
-    if(hasUpperPair){
-        bilateralEligible.push(...upperLeft, ...upperRight);
-        bilateralNotes.push('Compensable disabilities found on both upper extremities.');
-    }
-    if(hasLowerPair){
-        bilateralEligible.push(...lowerLeft, ...lowerRight);
-        bilateralNotes.push('Compensable disabilities found on both lower extremities.');
-    }
-
-    const allEligibleStrings = new Set(bilateralEligible.map(v => String(v)));
-    const otherItems = items.filter(i => {
-        if(i.value <= 0) return false;
-        if(i.type === 'other') return true;
-        if((hasUpperPair && (i.type === 'upper-left' || i.type === 'upper-right')) ||
-           (hasLowerPair && (i.type === 'lower-left' || i.type === 'lower-right'))){
-            return false;
-        }
-        return true;
-    }).map(i => i.value);
-
-    if(!bilateralEligible.length){
-        bilateralBox.style.display = 'none';
-        mathDiv.innerHTML = '';
-        const normal = vaCombineDetailed(items.map(i=>i.value));
-        return { combinedRaw: normal.raw, details: normal.steps };
-    }
-
-    const bilateralCombined = vaCombineDetailed(bilateralEligible);
-    const bilateralRaw = bilateralCombined.raw;
-    const bilateralAdd = bilateralRaw * 0.10;
-    const bilateralBlock = bilateralRaw + bilateralAdd;
-
-    const finalCombine = vaCombineDetailed([bilateralBlock, ...otherItems]);
-
-    bilateralBox.style.display = 'block';
-    mathDiv.innerHTML = `
-        <div class="math-step">${bilateralNotes.join(' ')}</div>
-        <div class="math-step">Bilateral-eligible ratings combine to ${bilateralRaw.toFixed(1)}%.</div>
-        <div class="math-step">10% of ${bilateralRaw.toFixed(1)}% = ${bilateralAdd.toFixed(1)}%.</div>
-        <div class="math-step">Bilateral-adjusted block = ${bilateralBlock.toFixed(1)}% before combining with other ratings.</div>
-    `;
-
-    const detailSteps = [
-        ...bilateralCombined.steps,
-        `Add bilateral factor: ${bilateralRaw.toFixed(1)}% + ${bilateralAdd.toFixed(1)}% = ${bilateralBlock.toFixed(1)}%`,
-        ...finalCombine.steps
-    ];
-
-    return { combinedRaw: finalCombine.raw, details: detailSteps };
-}
-
-function getBasePayKey(hasSpouse, parents, hasChild){
-    if(hasSpouse && hasChild && parents === 2) return 'spouseTwoParentsChild';
-    if(hasSpouse && hasChild && parents === 1) return 'spouseOneParentChild';
-    if(hasSpouse && hasChild) return 'spouseChild';
-    if(hasSpouse && parents === 2) return 'spouseTwoParents';
-    if(hasSpouse && parents === 1) return 'spouseOneParent';
-    if(hasSpouse) return 'spouse';
-    if(hasChild && parents === 2) return 'twoParentsChild';
-    if(hasChild && parents === 1) return 'oneParentChild';
-    if(hasChild) return 'childOnly';
-    if(parents === 2) return 'twoParents';
-    if(parents === 1) return 'oneParent';
-    return 'single';
-}
-
-function buildDependencyDescription(hasSpouse, under18, school, parents){
-    const parts = ['Veteran'];
-    if(hasSpouse) parts.push('spouse');
-    if(under18 > 0) parts.push(`${under18} child${under18 > 1 ? 'ren under 18' : ' under 18'}`);
-    if(school > 0) parts.push(`${school} child${school > 1 ? 'ren 18–24 in school' : ' 18–24 in school'}`);
-    if(parents > 0) parts.push(`${parents} dependent parent${parents > 1 ? 's' : ''}`);
-    return parts.join(' • ');
-}
-
-function getMonthlyPay(roundedRating){
-    const hasSpouse = document.getElementById('status').value === 'spouse';
-    const under18 = parseInt(document.getElementById('childrenUnder18').value,10) || 0;
-    const school = parseInt(document.getElementById('children18to24').value,10) || 0;
-    const parents = parseInt(document.getElementById('parents').value,10) || 0;
-
-    const hasChild = (under18 + school) > 0;
-    const key = getBasePayKey(hasSpouse, parents, hasChild);
-    const description = buildDependencyDescription(hasSpouse, under18, school, parents);
-
-    let base = (payBase[key] && payBase[key][roundedRating] !== undefined) ? payBase[key][roundedRating] : 0;
-
-    if(roundedRating < 30){
-        return { pay: base, description, note: 'At 10% and 20%, VA rates do not increase for dependents.' };
-    }
-
-    let extra = 0;
-    const extraUnder18Count = hasChild ? Math.max(0, under18 - 1) : 0;
-    const firstSchoolCoveredByBase = hasChild ? 1 : 0;
-    const schoolCountToAdd = Math.max(0, school - firstSchoolCoveredByBase) + (hasChild ? 0 : school);
-
-    extra += extraUnder18Count * (additionalChildUnder18[roundedRating] || 0);
-    extra += schoolCountToAdd * (additionalSchoolChild[roundedRating] || 0);
+  if(!subset.length) {
+    const base = combineList(others);
 
     return {
-        pay: base + extra,
-        description,
-        note: extra > 0 ? 'Includes added child increments for common dependency scenarios.' : 'Based on selected dependency scenario.'
+      value:base.value,
+      rounded:roundTen(base.value),
+      steps:base.steps,
+      bFactor:0,
+      selected:[]
     };
+  }
+
+  const bil = combineList(subset.map(e=>e.value));
+  const bFactor = bil.value*.1;
+  const block = roundHalfUp(bil.value+bFactor);
+  const all = combineList([block,...others]);
+
+  return {
+    value:all.value,
+    rounded:roundTen(all.value),
+    steps:[
+      ...bil.steps,
+      `Bilateral group ${bil.value}% + 10% ` +
+      `(${bFactor.toFixed(1)} points) → ${block}%`,
+      ...all.steps
+    ],
+    bFactor,
+    selected:subset
+  };
 }
 
-function calculate(){
-    const mathBox = document.getElementById('mathBox');
-    const mathStepsDiv = document.getElementById('mathSteps');
+function hasPairs(subset) {
+  const sides = new Set(subset.map(e=>e.side));
 
-    if(!items.length){
-        document.getElementById('rawRating').innerText = 'Exact Raw Score: 0.0%';
-        document.getElementById('finalRating').innerText = '0%';
-        document.getElementById('monthlyPay').innerText = '$0.00 / mo';
-        document.getElementById('payContext').innerText = 'Veteran alone';
-        document.getElementById('bilateralBox').style.display = 'none';
-        mathBox.style.display = 'none';
-        return;
+  return (
+    (sides.has('ul')&&sides.has('ur')) ||
+    (sides.has('ll')&&sides.has('lr'))
+  );
+}
+
+function calcRatings() {
+  const positive = entries.filter(e=>e.value>0);
+
+  const upperPaired =
+    positive.some(e=>e.side==='ul') &&
+    positive.some(e=>e.side==='ur');
+
+  const lowerPaired =
+    positive.some(e=>e.side==='ll') &&
+    positive.some(e=>e.side==='lr');
+
+  const candidate = positive.filter(e=>
+    (upperPaired&&(e.side==='ul'||e.side==='ur')) ||
+    (lowerPaired&&(e.side==='ll'||e.side==='lr'))
+  );
+
+  const baseline = evaluate([]);
+
+  if(!hasPairs(candidate)) {
+    return {...baseline,limited:false};
+  }
+
+  let best = evaluate(candidate);
+  let limited = false;
+
+  // Evaluate the exception in 38 CFR 4.26(d).
+  // Limit complex combinations for browser performance.
+
+  if(candidate.length<=12) {
+    const count = 1<<candidate.length;
+
+    for(let mask=1;mask<count;mask++) {
+      const subset = candidate.filter(
+        (_,i)=>mask&(1<<i)
+      );
+
+      if(subset.length<2||!hasPairs(subset)) {
+        continue;
+      }
+
+      const trial = evaluate(subset);
+
+      if(
+        trial.rounded>best.rounded ||
+        (
+          trial.rounded===best.rounded &&
+          trial.value>best.value
+        )
+      ) {
+        best = trial;
+      }
+    }
+  } else {
+    limited = true;
+  }
+
+  if(
+    baseline.rounded>best.rounded ||
+    (
+      baseline.rounded===best.rounded &&
+      baseline.value>best.value
+    )
+  ) {
+    best = baseline;
+  }
+
+  return {...best,limited};
+}
+
+function rateKey(sp,parents,child) {
+  if(child) {
+    if(sp) {
+      return parents===2
+        ? 'spouseTwoParentsChild'
+        : parents===1
+          ? 'spouseOneParentChild'
+          : 'spouseChild';
     }
 
-    const result = applyBilateralFactor();
-    const raw = result.combinedRaw || 0;
-    const rounded = roundCombinedRating(raw);
-    const payInfo = getMonthlyPay(rounded);
+    return parents===2
+      ? 'twoParentsChild'
+      : parents===1
+        ? 'oneParentChild'
+        : 'childOnly';
+  }
 
-    document.getElementById('rawRating').innerText = `Exact Raw Score: ${raw.toFixed(1)}%`;
-    document.getElementById('finalRating').innerText = `${rounded}%`;
-    document.getElementById('monthlyPay').innerText = `${money(payInfo.pay)} / mo`;
-    document.getElementById('payContext').innerText = `${payInfo.description} — ${payInfo.note}`;
+  if(sp) {
+    return parents===2
+      ? 'spouseTwoParents'
+      : parents===1
+        ? 'spouseOneParent'
+        : 'spouse';
+  }
 
-    mathBox.style.display = 'block';
-    mathStepsDiv.innerHTML = '';
-    result.details.forEach(step => {
-        const div = document.createElement('div');
-        div.className = 'math-step';
-        div.textContent = step;
-        mathStepsDiv.appendChild(div);
-    });
+  return parents===2
+    ? 'twoParents'
+    : parents===1
+      ? 'oneParent'
+      : 'single';
 }
 
-calculate();
+function payFor(pct) {
+  if(pct===10) {
+    return {
+      value:180.42,
+      context:'No dependent increment at 10%'
+    };
+  }
+
+  if(pct===20) {
+    return {
+      value:356.66,
+      context:'No dependent increment at 20%'
+    };
+  }
+
+  if(pct<30) {
+    return {
+      value:0,
+      context:'No compensable monthly rating'
+    };
+  }
+
+  const idx = RATE_COLS.indexOf(pct);
+
+  if(idx<0) {
+    return {
+      value:0,
+      context:'Rating not supported'
+    };
+  }
+
+  const sp = $('spouse').value==='1';
+  const aa = $('aa').value==='1';
+  const under = +$('under').value;
+  const school = +$('school').value;
+  const parents = +$('parents').value;
+
+  // Child-inclusive base amount covers one child under 18.
+  // Qualifying schoolchildren use separate added amounts.
+
+  const childBase = under>0;
+  const key = rateKey(sp,parents,childBase);
+
+  const base = RATE_TABLE[key][idx];
+
+  const extraUnder =
+    Math.max(0,under-1)*EXTRA_UNDER[idx];
+
+  const extraSchool =
+    school*EXTRA_SCHOOL[idx];
+
+  const extraAA =
+    sp&&aa ? EXTRA_AA[idx] : 0;
+
+  return {
+    value:Math.round(
+      (base+extraUnder+extraSchool+extraAA)*100
+    )/100,
+
+    context:
+      `${sp?'With spouse':'No spouse'} • ` +
+      `${parents} parent(s) • ` +
+      `${under} child(ren) under 18 • ` +
+      `${school} schoolchild(ren)` +
+      `${extraAA?' • Spouse A&A':''}`
+  };
+}
+
+function render() {
+  const list = $('entries');
+  list.replaceChildren();
+
+  $('none').hidden = entries.length>0;
+
+  entries.forEach(e=>{
+    const li = document.createElement('li');
+    const span = document.createElement('span');
+
+    span.textContent =
+      `${SIDE_NAMES[e.side]} — ${e.value}%`;
+
+    const button = document.createElement('button');
+    button.className = 'remove';
+    button.textContent = 'Remove';
+    button.type = 'button';
+
+    button.setAttribute(
+      'aria-label',
+      `Remove ${SIDE_NAMES[e.side]} ${e.value}%`
+    );
+
+    button.addEventListener('click',()=>{
+      entries = entries.filter(x=>x.id!==e.id);
+      render();
+    });
+
+    li.append(span,button);
+    list.append(li);
+  });
+
+  const r = calcRatings();
+  const p = payFor(r.rounded);
+
+  $('combined').textContent = r.rounded+'%';
+  $('pay').textContent = cash(p.value);
+
+  $('raw').textContent =
+    `VA table combined value: ${r.value}% ` +
+    `before final rounding`;
+
+  $('depLabel').textContent = p.context;
+
+  const bil = $('bilateralResult');
+
+  bil.textContent = r.selected.length
+    ? `Bilateral factor: ${r.bFactor.toFixed(1)} ` +
+      `added point(s) on ${r.selected.length} ` +
+      `qualifying extremity rating(s).` +
+      `${r.limited
+        ? ' Complex case: manually confirm the best §4.26(d) exception.'
+        : ''}`
+    : 'No bilateral factor applied.';
+
+  const math = $('math');
+  math.replaceChildren();
+
+  for(const line of (
+    r.steps.length
+      ? r.steps
+      : ['Add a disability to see the calculation.']
+  )) {
+    const li = document.createElement('li');
+    li.textContent = line;
+    math.append(li);
+  }
+
+  const end = document.createElement('li');
+  end.textContent =
+    `${r.value}% → ${r.rounded}% after final rounding`;
+
+  math.append(end);
+
+  $('aa').disabled = $('spouse').value!=='1';
+
+  if($('aa').disabled) {
+    $('aa').value = '0';
+  }
+}
+
+// Populate dependent selectors.
+for(let n=0;n<=10;n++) {
+  for(const id of ['under','school']) {
+    const option = document.createElement('option');
+    option.value = String(n);
+    option.textContent = String(n);
+    $(id).append(option);
+  }
+}
+
+// Populate rating buttons.
+for(const value of [
+  0,10,20,30,40,50,60,70,80,90,100
+]) {
+  const b = document.createElement('button');
+
+  b.className = 'choice';
+  b.type = 'button';
+  b.textContent = value+'%';
+  b.setAttribute('aria-pressed','false');
+
+  b.addEventListener('click',()=>{
+    rating = value;
+
+    document.querySelectorAll(
+      '#ratings button'
+    ).forEach(x=>{
+      x.setAttribute(
+        'aria-pressed',
+        String(x===b)
+      );
+    });
+
+    $('add').disabled = false;
+  });
+
+  $('ratings').append(b);
+}
+
+// Body-area selector.
+$('sides').addEventListener('click',e=>{
+  const btn = e.target.closest('button[data-side]');
+
+  if(!btn) return;
+
+  side = btn.dataset.side;
+
+  document.querySelectorAll(
+    '#sides button'
+  ).forEach(x=>{
+    x.setAttribute(
+      'aria-pressed',
+      String(x===btn)
+    );
+  });
+});
+
+// Add disability.
+$('add').addEventListener('click',()=>{
+  if(rating===null) return;
+
+  entries.push({
+    id:++counter,
+    side,
+    value:rating
+  });
+
+  rating = null;
+  $('add').disabled = true;
+
+  document.querySelectorAll(
+    '#ratings button'
+  ).forEach(x=>{
+    x.setAttribute('aria-pressed','false');
+  });
+
+  render();
+});
+
+// Clear disabilities.
+$('clear').addEventListener('click',()=>{
+  entries = [];
+  rating = null;
+  $('add').disabled = true;
+
+  document.querySelectorAll(
+    '#ratings button'
+  ).forEach(x=>{
+    x.setAttribute('aria-pressed','false');
+  });
+
+  render();
+});
+
+// Update calculations when dependents change.
+for(const id of [
+  'spouse','aa','under','school','parents'
+]) {
+  $(id).addEventListener('change',render);
+}
+
+render();
 </script>
 </body>
 </html>
