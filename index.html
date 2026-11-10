@@ -10,6 +10,7 @@
 <meta property="og:title" content="The Exotic Veteran™ Field Manual | Stop Guessing. Start Understanding.">
 <meta property="og:description" content="Veteran-to-Veteran VA disability education. Learn the language of evidence, examinations and VA decision letters.">
 <meta property="og:url" content="https://daxreciprocated.com/">
+
 <title>The Exotic Veteran™ Field Manual | DAX Reciprocated</title>
 
 <style>
@@ -44,8 +45,14 @@ body::before {
   z-index:-1;
 }
 a {color:var(--accent)}
-a:focus-visible {outline:3px solid #ffd98b;outline-offset:3px}
-.wrap {width:min(var(--max),calc(100% - 36px));margin:auto}
+a:focus-visible {
+  outline:3px solid #ffd98b;
+  outline-offset:3px;
+}
+.wrap {
+  width:min(var(--max),calc(100% - 36px));
+  margin:auto;
+}
 .nav {
   display:flex;
   align-items:center;
@@ -69,7 +76,11 @@ a:focus-visible {outline:3px solid #ffd98b;outline-offset:3px}
   font-size:.63rem;
   letter-spacing:.22em;
 }
-.nav-links {display:flex;gap:24px;flex-wrap:wrap}
+.nav-links {
+  display:flex;
+  gap:24px;
+  flex-wrap:wrap;
+}
 .nav-links a {
   font-size:.89rem;
   text-decoration:none;
@@ -95,7 +106,10 @@ h1,h2,h3 {
   letter-spacing:-.023em;
   margin:0 0 17px;
 }
-h1 {font-size:clamp(2.6rem,5.7vw,5rem);font-weight:950}
+h1 {
+  font-size:clamp(2.6rem,5.7vw,5rem);
+  font-weight:950;
+}
 h2 {font-size:clamp(1.9rem,3.2vw,2.95rem)}
 h3 {font-size:1.18rem}
 .hero h1 span {color:var(--accent)}
@@ -104,7 +118,10 @@ h3 {font-size:1.18rem}
   max-width:670px;
   color:#dad5c9;
 }
-.supporting {color:var(--muted);max-width:630px}
+.supporting {
+  color:var(--muted);
+  max-width:630px;
+}
 .actions {
   display:flex;
   flex-wrap:wrap;
@@ -132,9 +149,15 @@ h3 {font-size:1.18rem}
   background:#f5ca7a;
   color:#15100a;
 }
-.button.secondary {background:transparent;color:var(--accent)}
+.button.secondary {
+  background:transparent;
+  color:var(--accent);
+}
 .button.secondary:hover {background:#241e13}
-.note {font-size:.83rem;color:var(--muted)}
+.note {
+  font-size:.83rem;
+  color:var(--muted);
+}
 .book-scene {
   display:flex;
   justify-content:center;
@@ -144,7 +167,9 @@ h3 {font-size:1.18rem}
 .book {
   width:min(360px,100%);
   min-height:474px;
-  box-shadow:18px 20px 0 #1b2026,30px 35px 50px #0008;
+  box-shadow:
+    18px 20px 0 #1b2026,
+    30px 35px 50px #0008;
   transform:rotate(-4deg) rotateY(-9deg);
   background:linear-gradient(130deg,#1f2429,#090b0e 48%,#29251a);
   border:2px solid #725a36;
@@ -169,8 +194,14 @@ h3 {font-size:1.18rem}
   text-transform:uppercase;
   letter-spacing:-.04em;
 }
-.book .large em {color:var(--accent);font-style:normal}
-.book .tiny {font-size:.83rem;color:#cbc5b5}
+.book .large em {
+  color:var(--accent);
+  font-style:normal;
+}
+.book .tiny {
+  font-size:.83rem;
+  color:#cbc5b5;
+}
 .seal {
   display:inline-block;
   border:2px solid var(--accent);
@@ -181,7 +212,10 @@ h3 {font-size:1.18rem}
   letter-spacing:.12em;
   max-width:fit-content;
 }
-section {padding:72px 0;border-top:1px solid #2b2b2c}
+section {
+  padding:72px 0;
+  border-top:1px solid #2b2b2c;
+}
 .section-lead {
   max-width:710px;
   color:var(--muted);
@@ -206,7 +240,10 @@ section {padding:72px 0;border-top:1px solid #2b2b2c}
   font-weight:900;
   margin-bottom:13px;
 }
-.card p {color:var(--muted);margin:0}
+.card p {
+  color:var(--muted);
+  margin:0;
+}
 .feature {
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -237,7 +274,10 @@ li {margin:7px 0}
   color:var(--accent);
   letter-spacing:.05em;
 }
-.method span {font-size:.86rem;color:#d0c9ba}
+.method span {
+  font-size:.86rem;
+  color:#d0c9ba;
+}
 .faq details {
   margin:12px 0;
   border:1px solid #39352d;
@@ -245,8 +285,14 @@ li {margin:7px 0}
   padding:16px 20px;
   background:#151719;
 }
-.faq summary {cursor:pointer;font-weight:800}
-.faq p {color:var(--muted);margin:12px 0 0}
+.faq summary {
+  cursor:pointer;
+  font-weight:800;
+}
+.faq p {
+  color:var(--muted);
+  margin:12px 0 0;
+}
 .price {
   font-size:3.1rem;
   font-weight:950;
@@ -259,7 +305,10 @@ li {margin:7px 0}
   gap:30px;
   align-items:center;
 }
-.buy-panel p {max-width:660px;color:var(--muted)}
+.buy-panel p {
+  max-width:660px;
+  color:var(--muted);
+}
 footer {
   border-top:1px solid #3b362c;
   padding:34px 0 48px;
@@ -280,10 +329,15 @@ footer {
 }
 footer a {color:#edca89}
 @media(max-width:830px) {
-  .hero,.feature,.buy-panel {grid-template-columns:1fr}
+  .hero,.feature,.buy-panel {
+    grid-template-columns:1fr;
+  }
   .hero {padding-top:46px}
   .book-scene {order:-1}
-  .book {min-height:385px;width:270px}
+  .book {
+    min-height:385px;
+    width:270px;
+  }
   .grid {grid-template-columns:1fr 1fr}
   .method {grid-template-columns:1fr 1fr}
   .nav {
@@ -310,6 +364,7 @@ footer a {color:#edca89}
 </head>
 
 <body>
+
 <header class="wrap nav">
   <a class="brand" href="#top">
     DAX RECIPROCATED
@@ -319,6 +374,9 @@ footer a {color:#edca89}
   <nav class="nav-links" aria-label="Main navigation">
     <a href="#inside">The Book</a>
     <a href="#resources">Free Resources</a>
+    <a href="va-decision-letter-guide.html">
+      Decision Letter Guide
+    </a>
     <a href="https://www.facebook.com/share/g/18bo1Lu1gm/"
        target="_blank" rel="noopener noreferrer">
       Veteran Community
@@ -408,6 +466,7 @@ footer a {color:#edca89}
   <section id="inside">
     <div class="wrap">
       <p class="eyebrow">What you're getting</p>
+
       <h2>Not another wall of VA jargon.</h2>
 
       <p class="section-lead">
@@ -480,6 +539,7 @@ footer a {color:#edca89}
     <div class="wrap feature">
       <div>
         <p class="eyebrow">The method</p>
+
         <h2>Facts first. Then understanding.</h2>
 
         <p class="section-lead">
@@ -532,7 +592,13 @@ footer a {color:#edca89}
         </p>
 
         <div class="actions">
-          <a class="button secondary" href="calculator.html">
+          <a class="button secondary"
+             href="va-decision-letter-guide.html">
+            Read the Free Decision Letter Guide
+          </a>
+
+          <a class="button secondary"
+             href="calculator.html">
             Open VA Rating Calculator
           </a>
 
@@ -583,6 +649,7 @@ footer a {color:#edca89}
     <div class="wrap feature">
       <div>
         <p class="eyebrow">About the publisher</p>
+
         <h2>Veteran-to-Veteran education.</h2>
 
         <p class="section-lead">
@@ -599,6 +666,7 @@ footer a {color:#edca89}
 
       <div class="panel">
         <p class="small-caps">Coming later</p>
+
         <h3>The Exotic Veteran™ Live Classroom</h3>
 
         <p>
@@ -691,6 +759,7 @@ footer a {color:#edca89}
       <div class="panel buy-panel">
         <div>
           <p class="eyebrow">The field manual</p>
+
           <h2>Stop guessing. Start understanding.</h2>
 
           <p id="purchase-note">
